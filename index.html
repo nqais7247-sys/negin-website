@@ -2,13 +2,18 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-<title>NEGIN ✦ Enchanted</title>
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+>
+
+<title>NEGIN ✦ A Story Still Blooming</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
 
 <style>
 
@@ -22,389 +27,831 @@
     box-sizing:border-box;
 }
 
+:root{
+    --gold:#f5c17c;
+    --gold-light:#ffe6b4;
+    --rose:#ff9fbd;
+    --rose-dark:#8e3655;
+    --cream:#fff1df;
+    --dark:#090507;
+
+    --mx:50%;
+    --my:50%;
+}
+
 html,
 body{
     width:100%;
-    height:100%;
-    overflow:hidden;
-    background:#030104;
+    min-height:100%;
+}
+
+html{
+    background:#050304;
 }
 
 body{
-    font-family:Montserrat,sans-serif;
+    font-family:"Montserrat",sans-serif;
+    background:#050304;
+    color:white;
+    overflow-x:hidden;
     cursor:none;
-    overscroll-behavior:none;
     -webkit-tap-highlight-color:transparent;
-}
-
-:root{
-    --mx:50%;
-    --my:50%;
-    --rx:0deg;
-    --ry:0deg;
 }
 
 
 /* =========================================================
-   UNIVERSE
+   HERO
 ========================================================= */
 
-.universe{
+.hero{
     position:relative;
 
-    width:100vw;
-    height:100vh;
-    height:100dvh;
+    width:100%;
+    min-height:100vh;
+    min-height:100dvh;
 
     overflow:hidden;
 
     display:flex;
-    justify-content:center;
     align-items:center;
 
-    perspective:1400px;
+    background:
+        radial-gradient(
+            circle at 25% 40%,
+            rgba(125,42,68,.28),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 80% 50%,
+            rgba(94,28,56,.18),
+            transparent 40%
+        ),
+        linear-gradient(
+            120deg,
+            #090405,
+            #17090e 48%,
+            #050304
+        );
+}
+
+
+/* =========================================================
+   BACKGROUND PHOTO
+========================================================= */
+
+.background-photo{
+    position:absolute;
+    inset:0;
+
+    background-image:url("negin.jpg");
+    background-size:cover;
+    background-position:center 35%;
+
+    opacity:.08;
+
+    filter:
+        blur(25px)
+        saturate(.8);
+
+    transform:scale(1.15);
+
+    z-index:0;
+}
+
+
+/* =========================================================
+   DARK OVERLAY
+========================================================= */
+
+.hero::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    z-index:1;
 
     background:
 
         radial-gradient(
             circle at var(--mx) var(--my),
-            rgba(255,170,210,.10),
-            transparent 22%
-        ),
-
-        radial-gradient(
-            circle at 15% 20%,
-            rgba(255,45,140,.09),
-            transparent 30%
-        ),
-
-        radial-gradient(
-            circle at 85% 75%,
-            rgba(135,50,255,.12),
-            transparent 35%
+            rgba(255,183,207,.09),
+            transparent 20%
         ),
 
         linear-gradient(
-            145deg,
-            #020103,
-            #100610 45%,
-            #050207
+            90deg,
+            rgba(4,2,3,.10),
+            rgba(4,2,3,.25) 45%,
+            rgba(4,2,3,.72) 100%
         );
 }
 
 
 /* =========================================================
-   CANVAS
+   STARS
 ========================================================= */
 
-canvas{
+#stars{
     position:absolute;
     inset:0;
 
-    width:100%;
-    height:100%;
-}
-
-#particleCanvas{
-    z-index:4;
-    pointer-events:none;
-}
-
-
-/* =========================================================
-   AURORA
-========================================================= */
-
-.aurora{
-    position:absolute;
-
-    inset:-30%;
-
-    filter:blur(100px);
-
-    opacity:.8;
-
-    z-index:0;
-}
-
-.aura{
-    position:absolute;
-
-    border-radius:50%;
-
-    mix-blend-mode:screen;
-}
-
-.a1{
-    width:55vw;
-    height:55vw;
-
-    left:5%;
-    top:5%;
-
-    background:
-        rgba(255,42,139,.16);
-
-    animation:
-        aura1
-        14s
-        ease-in-out
-        infinite
-        alternate;
-}
-
-.a2{
-    width:50vw;
-    height:50vw;
-
-    right:0;
-    bottom:0;
-
-    background:
-        rgba(122,56,255,.18);
-
-    animation:
-        aura2
-        18s
-        ease-in-out
-        infinite
-        alternate;
-}
-
-.a3{
-    width:40vw;
-    height:40vw;
-
-    left:38%;
-    top:30%;
-
-    background:
-        rgba(255,181,87,.10);
-
-    animation:
-        aura3
-        12s
-        ease-in-out
-        infinite
-        alternate;
-}
-
-@keyframes aura1{
-    to{
-        transform:
-            translate(25vw,15vh)
-            scale(1.3);
-    }
-}
-
-@keyframes aura2{
-    to{
-        transform:
-            translate(-25vw,-18vh)
-            scale(.8);
-    }
-}
-
-@keyframes aura3{
-    to{
-        transform:
-            translate(-15vw,18vh)
-            scale(1.4);
-    }
-}
-
-
-/* =========================================================
-   LIGHT BEAMS
-========================================================= */
-
-.beams{
-    position:absolute;
-
-    inset:0;
-
-    z-index:1;
+    z-index:2;
 
     pointer-events:none;
-
-    overflow:hidden;
 }
 
-.beam{
+.star{
     position:absolute;
 
     width:2px;
-    height:150vh;
+    height:2px;
 
-    top:-25vh;
+    border-radius:50%;
 
-    background:
-        linear-gradient(
-            transparent,
-            rgba(255,220,174,.25),
-            transparent
-        );
+    background:white;
 
-    filter:blur(2px);
-
-    transform-origin:center;
-}
-
-.b1{
-    left:25%;
-
-    transform:rotate(24deg);
+    box-shadow:
+        0 0 5px white,
+        0 0 12px var(--rose);
 
     animation:
-        beamMove
-        8s
+        starBlink
+        var(--speed)
         ease-in-out
         infinite
         alternate;
 }
 
-.b2{
-    right:25%;
-
-    transform:rotate(-25deg);
-
-    animation:
-        beamMove2
-        10s
-        ease-in-out
-        infinite
-        alternate;
-}
-
-@keyframes beamMove{
-    to{
-        left:45%;
-        opacity:.2;
-    }
-}
-
-@keyframes beamMove2{
-    to{
-        right:45%;
+@keyframes starBlink{
+    from{
         opacity:.15;
+        transform:scale(.6);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1.8);
     }
 }
 
 
 /* =========================================================
-   GLASS STAGE
+   MOON
 ========================================================= */
 
-.stage{
-    position:relative;
+.moon{
+    position:absolute;
 
-    width:min(88vw,1250px);
-    height:min(66vh,680px);
+    width:min(48vw,680px);
+    aspect-ratio:1;
 
-    z-index:5;
+    left:-5vw;
+    top:-12vw;
+
+    border-radius:50%;
+
+    z-index:2;
+
+    background:
+
+        radial-gradient(
+            circle at 35% 30%,
+            rgba(255,255,255,.9),
+            transparent 3%
+        ),
+
+        radial-gradient(
+            circle at 65% 55%,
+            rgba(132,71,62,.16),
+            transparent 8%
+        ),
+
+        radial-gradient(
+            circle at 45% 45%,
+            #ffe2c3,
+            #d78d76 55%,
+            #824954 80%,
+            #2b1720
+        );
+
+    box-shadow:
+        0 0 30px rgba(255,197,163,.6),
+        0 0 100px rgba(255,123,167,.18),
+        0 0 200px rgba(255,180,132,.10);
+
+    opacity:.72;
+
+    animation:
+        moonFloat
+        9s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+.moon::after{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+            circle at 22% 45%,
+            rgba(85,45,48,.20) 0 5%,
+            transparent 6%
+        ),
+
+        radial-gradient(
+            circle at 58% 22%,
+            rgba(85,45,48,.18) 0 7%,
+            transparent 8%
+        ),
+
+        radial-gradient(
+            circle at 72% 66%,
+            rgba(85,45,48,.16) 0 9%,
+            transparent 10%
+        );
+}
+
+@keyframes moonFloat{
+    to{
+        transform:
+            translateY(20px)
+            translateX(10px);
+    }
+}
+
+
+/* =========================================================
+   TOP TEXT
+========================================================= */
+
+.top-decoration{
+    position:absolute;
+
+    top:30px;
+    left:5%;
+    right:5%;
+
+    z-index:20;
 
     display:flex;
     align-items:center;
     justify-content:center;
 
-    transform-style:preserve-3d;
+    gap:25px;
 
-    transform:
-        rotateX(var(--rx))
-        rotateY(var(--ry));
+    color:var(--gold-light);
 
-    transition:
-        transform .15s ease-out;
+    font-family:
+        "Cormorant Garamond",
+        serif;
 
-    border-radius:55px;
+    font-size:12px;
 
-    border:
-        1px solid rgba(255,255,255,.10);
+    letter-spacing:8px;
+
+    text-transform:uppercase;
+
+    opacity:.85;
+}
+
+.top-decoration .line{
+    height:1px;
+    flex:1;
+
+    max-width:320px;
 
     background:
         linear-gradient(
-            135deg,
-            rgba(255,255,255,.06),
-            rgba(255,255,255,.008)
+            90deg,
+            transparent,
+            var(--gold),
+            transparent
+        );
+}
+
+.top-heart{
+    font-size:26px;
+
+    filter:
+        drop-shadow(
+            0 0 10px
+            var(--gold)
         );
 
-    backdrop-filter:blur(15px);
-    -webkit-backdrop-filter:blur(15px);
+    animation:
+        heartPulse
+        2s
+        ease-in-out
+        infinite;
+}
+
+@keyframes heartPulse{
+    50%{
+        transform:scale(1.2);
+    }
+}
+
+
+/* =========================================================
+   MAIN LAYOUT
+========================================================= */
+
+.layout{
+    position:relative;
+
+    z-index:10;
+
+    width:min(1500px,94%);
+
+    min-height:100vh;
+    min-height:100dvh;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:
+        1fr
+        1.08fr;
+
+    align-items:center;
+
+    gap:3vw;
+
+    padding:
+        90px 0
+        55px;
+}
+
+
+/* =========================================================
+   PORTRAIT SIDE
+========================================================= */
+
+.portrait-area{
+    position:relative;
+
+    min-height:720px;
+
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+}
+
+
+/* =========================================================
+   PORTRAIT FRAME
+========================================================= */
+
+.portrait-frame{
+    position:relative;
+
+    width:min(95%,630px);
+    height:680px;
+
+    overflow:hidden;
+
+    border-radius:
+        48% 48%
+        12% 12% /
+        18% 18%
+        10% 10%;
+
+    border:
+        1px solid
+        rgba(255,208,160,.34);
 
     box-shadow:
 
-        0 70px 130px
-        rgba(0,0,0,.65),
+        0 0 0 8px
+        rgba(255,255,255,.015),
 
-        inset 0 1px
-        rgba(255,255,255,.17),
+        0 0 70px
+        rgba(255,100,155,.18),
 
-        inset 0 -1px
-        rgba(255,130,190,.05),
-
-        0 0 130px
-        rgba(255,88,164,.06);
-
-    opacity:0;
+        0 50px 100px
+        rgba(0,0,0,.7);
 
     animation:
-        stageIn
+        portraitReveal
         2s
-        2.3s
         cubic-bezier(.16,1,.3,1)
         forwards;
+
+    opacity:0;
 }
 
-@keyframes stageIn{
+@keyframes portraitReveal{
 
     from{
         opacity:0;
 
         transform:
-            scale(.78)
             translateY(70px)
-            rotateX(15deg);
+            scale(.92);
 
-        filter:blur(20px);
+        filter:
+            blur(20px);
     }
 
     to{
         opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        filter:
+            blur(0);
     }
 }
 
 
 /* =========================================================
-   MOUSE LIGHT
+   ACTUAL IMAGE
 ========================================================= */
 
-.stage::before{
-    content:"";
+.portrait-frame img{
+    width:100%;
+    height:100%;
 
-    position:absolute;
+    display:block;
 
-    inset:0;
+    object-fit:cover;
 
-    border-radius:inherit;
+    object-position:
+        center 22%;
 
-    background:
-        radial-gradient(
-            circle at var(--mx) var(--my),
-            rgba(255,255,255,.17),
-            transparent 20%
-        );
+    transform:scale(1.03);
 
-    mix-blend-mode:screen;
+    filter:
+        saturate(.88)
+        contrast(1.04)
+        brightness(.92);
 
-    pointer-events:none;
+    transition:
+        transform
+        1.2s
+        cubic-bezier(.16,1,.3,1),
+        filter
+        1s ease;
+}
+
+.portrait-frame:hover img{
+    transform:
+        scale(1.07);
+
+    filter:
+        saturate(1)
+        contrast(1.05)
+        brightness(.97);
 }
 
 
 /* =========================================================
-   MOVING BORDER
+   IMAGE COLOR BLENDING
 ========================================================= */
 
-.stage::after{
+.portrait-frame::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    z-index:2;
+
+    pointer-events:none;
+
+    background:
+
+        linear-gradient(
+            to top,
+            rgba(10,4,7,.82),
+            transparent 34%
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(70,18,38,.20),
+            transparent 40%,
+            rgba(255,183,204,.08)
+        );
+
+    mix-blend-mode:multiply;
+}
+
+.portrait-frame::after{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    z-index:3;
+
+    pointer-events:none;
+
+    box-shadow:
+        inset 0 0 100px
+        rgba(10,2,7,.75);
+
+    border-radius:inherit;
+}
+
+
+/* =========================================================
+   PORTRAIT GLOW
+========================================================= */
+
+.portrait-glow{
+    position:absolute;
+
+    width:75%;
+    height:75%;
+
+    left:50%;
+    top:50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    border-radius:50%;
+
+    background:
+        rgba(255,100,165,.14);
+
+    filter:
+        blur(80px);
+
+    z-index:-1;
+}
+
+
+/* =========================================================
+   FLOWER CLUSTERS
+========================================================= */
+
+.flower-cluster{
+    position:absolute;
+
+    z-index:15;
+
+    pointer-events:none;
+}
+
+.cluster-left{
+    left:-20px;
+    bottom:0;
+
+    transform:
+        rotate(-10deg);
+}
+
+.cluster-right{
+    right:-10px;
+    bottom:25px;
+
+    transform:
+        scale(.8)
+        rotate(15deg);
+}
+
+.flower{
+    position:absolute;
+
+    width:110px;
+    height:110px;
+
+    animation:
+        flowerFloat
+        5s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+.flower:nth-child(2){
+    left:75px;
+    top:-60px;
+
+    transform:scale(.75);
+
+    animation-delay:-2s;
+}
+
+.flower:nth-child(3){
+    left:140px;
+    top:10px;
+
+    transform:scale(.55);
+
+    animation-delay:-3s;
+}
+
+@keyframes flowerFloat{
+    to{
+        translate:0 -12px;
+    }
+}
+
+.flower-petal{
+    position:absolute;
+
+    left:36px;
+    top:10px;
+
+    width:40px;
+    height:68px;
+
+    border-radius:
+        90% 20%
+        75% 25%;
+
+    transform-origin:
+        50% 48px;
+
+    background:
+
+        radial-gradient(
+            circle at 40% 25%,
+            rgba(255,255,255,.9),
+            transparent 20%
+        ),
+
+        linear-gradient(
+            150deg,
+            #ffe1e9,
+            #e66b9b 65%,
+            #8b294f
+        );
+
+    box-shadow:
+        inset 0 0 12px
+        rgba(255,255,255,.35),
+
+        0 0 16px
+        rgba(255,100,160,.18);
+}
+
+.flower-petal:nth-child(1){
+    transform:
+        rotate(0deg)
+        translateY(-15px);
+}
+
+.flower-petal:nth-child(2){
+    transform:
+        rotate(72deg)
+        translateY(-15px);
+}
+
+.flower-petal:nth-child(3){
+    transform:
+        rotate(144deg)
+        translateY(-15px);
+}
+
+.flower-petal:nth-child(4){
+    transform:
+        rotate(216deg)
+        translateY(-15px);
+}
+
+.flower-petal:nth-child(5){
+    transform:
+        rotate(288deg)
+        translateY(-15px);
+}
+
+.flower-center{
+    position:absolute;
+
+    width:24px;
+    height:24px;
+
+    left:44px;
+    top:43px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #fff7cc,
+            #e69b42 50%,
+            #8b481a
+        );
+
+    box-shadow:
+        0 0 18px
+        rgba(255,199,105,.8);
+}
+
+
+/* =========================================================
+   CONTENT SIDE
+========================================================= */
+
+.content-area{
+    position:relative;
+
+    min-height:650px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+
+/* =========================================================
+   GLASS CARD
+========================================================= */
+
+.glass-card{
+    position:relative;
+
+    width:min(100%,720px);
+
+    padding:
+        70px 55px
+        60px;
+
+    text-align:center;
+
+    border-radius:38px;
+
+    border:
+        1px solid
+        rgba(255,194,179,.28);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(60,20,35,.15),
+            rgba(12,5,8,.26)
+        );
+
+    backdrop-filter:
+        blur(14px);
+
+    -webkit-backdrop-filter:
+        blur(14px);
+
+    box-shadow:
+
+        inset 0 1px
+        rgba(255,255,255,.13),
+
+        0 40px 100px
+        rgba(0,0,0,.4),
+
+        0 0 80px
+        rgba(255,96,155,.07);
+
+    opacity:0;
+
+    animation:
+        cardReveal
+        1.8s
+        .6s
+        cubic-bezier(.16,1,.3,1)
+        forwards;
+}
+
+@keyframes cardReveal{
+
+    from{
+        opacity:0;
+
+        transform:
+            translateX(60px);
+
+        filter:blur(15px);
+    }
+
+    to{
+        opacity:1;
+
+        transform:
+            translateX(0);
+
+        filter:blur(0);
+    }
+}
+
+
+/* =========================================================
+   GLASS BORDER LIGHT
+========================================================= */
+
+.glass-card::before{
     content:"";
 
     position:absolute;
@@ -417,18 +864,19 @@ canvas{
 
     background:
         linear-gradient(
-            115deg,
+            110deg,
             transparent,
-            rgba(255,220,145,.5),
-            transparent 35%,
-            rgba(255,130,190,.35),
-            transparent 70%
+            rgba(255,224,170,.7),
+            transparent 30%,
+            rgba(255,121,174,.6),
+            transparent 65%,
+            rgba(255,224,170,.6)
         );
 
-    background-size:300%;
+    background-size:300% 100%;
 
     animation:
-        borderMove
+        borderFlow
         7s
         linear
         infinite;
@@ -445,406 +893,7 @@ canvas{
     pointer-events:none;
 }
 
-@keyframes borderMove{
-    to{
-        background-position:300%;
-    }
-}
-
-
-/* =========================================================
-   CORNERS
-========================================================= */
-
-.corner{
-    position:absolute;
-
-    width:90px;
-    height:90px;
-
-    opacity:.35;
-}
-
-.c1{
-    top:25px;
-    left:25px;
-
-    border-top:1px solid #ffd894;
-    border-left:1px solid #ffd894;
-}
-
-.c2{
-    top:25px;
-    right:25px;
-
-    border-top:1px solid #ffd894;
-    border-right:1px solid #ffd894;
-}
-
-.c3{
-    bottom:25px;
-    left:25px;
-
-    border-bottom:1px solid #ffd894;
-    border-left:1px solid #ffd894;
-}
-
-.c4{
-    bottom:25px;
-    right:25px;
-
-    border-bottom:1px solid #ffd894;
-    border-right:1px solid #ffd894;
-}
-
-
-/* =========================================================
-   CONTENT
-========================================================= */
-
-.content{
-    text-align:center;
-
-    position:relative;
-
-    transform:
-        translateZ(100px);
-
-    z-index:10;
-}
-
-
-/* =========================================================
-   DIAMOND
-========================================================= */
-
-.diamond-wrapper{
-    width:100px;
-    height:80px;
-
-    margin:
-        0 auto 20px;
-
-    position:relative;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-
-.diamond{
-    width:38px;
-    height:38px;
-
-    transform:rotate(45deg);
-
-    border:
-        1px solid rgba(255,235,187,.9);
-
-    background:
-        linear-gradient(
-            135deg,
-            white,
-            #ffc3d8 35%,
-            #ffdfa0 70%,
-            white
-        );
-
-    box-shadow:
-
-        inset 0 0 15px white,
-
-        0 0 12px white,
-
-        0 0 30px
-        rgba(255,158,200,.7),
-
-        0 0 80px
-        rgba(255,154,195,.3);
-
-    animation:
-        diamondFloat
-        4s
-        ease-in-out
-        infinite;
-}
-
-@keyframes diamondFloat{
-
-    50%{
-        transform:
-            translateY(-10px)
-            rotate(225deg)
-            scale(1.15);
-
-        box-shadow:
-
-            inset 0 0 25px white,
-
-            0 0 25px white,
-
-            0 0 60px #ff99c7,
-
-            0 0 110px
-            rgba(255,180,110,.3);
-    }
-}
-
-
-/* =========================================================
-   DIAMOND RAYS
-========================================================= */
-
-.ray{
-    position:absolute;
-
-    width:120px;
-    height:1px;
-
-    top:40px;
-    left:-10px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            #fff1b6,
-            transparent
-        );
-
-    opacity:.25;
-}
-
-.r1{
-    transform:rotate(0);
-}
-
-.r2{
-    transform:rotate(45deg);
-}
-
-.r3{
-    transform:rotate(90deg);
-}
-
-.r4{
-    transform:rotate(135deg);
-}
-
-
-/* =========================================================
-   INTRO
-========================================================= */
-
-.intro{
-    color:
-        rgba(255,229,219,.5);
-
-    font-size:10px;
-
-    letter-spacing:10px;
-
-    text-transform:uppercase;
-
-    margin-bottom:32px;
-
-    opacity:0;
-
-    animation:
-        fadeUp
-        1.5s
-        3.5s
-        forwards;
-}
-
-
-/* =========================================================
-   NAME
-========================================================= */
-
-.name{
-    display:flex;
-
-    justify-content:center;
-    align-items:center;
-
-    perspective:900px;
-
-    user-select:none;
-    -webkit-user-select:none;
-
-    touch-action:manipulation;
-}
-
-
-/* =========================================================
-   LETTERS
-========================================================= */
-
-.letter{
-    display:inline-block;
-
-    position:relative;
-
-    font-family:
-        "Cormorant Garamond",
-        serif;
-
-    font-size:
-        clamp(100px,17vw,245px);
-
-    font-weight:600;
-
-    line-height:.75;
-
-    color:transparent;
-
-    background:
-        linear-gradient(
-            110deg,
-
-            #713713 0%,
-
-            #c47b2c 8%,
-
-            #ffe99b 15%,
-
-            #fff9d8 21%,
-
-            #f3a7bf 31%,
-
-            #fff0b3 40%,
-
-            #9c531a 50%,
-
-            #ffd87b 59%,
-
-            #fff8cc 68%,
-
-            #e99db9 78%,
-
-            #ffe89b 88%,
-
-            #985018 100%
-        );
-
-    background-size:300% 100%;
-
-    -webkit-background-clip:text;
-
-    background-clip:text;
-
-    filter:
-
-        drop-shadow(
-            0 2px 0
-            rgba(255,247,210,.6)
-        )
-
-        drop-shadow(
-            0 6px 1px
-            rgba(70,28,8,.8)
-        )
-
-        drop-shadow(
-            0 15px 12px
-            rgba(0,0,0,.55)
-        )
-
-        drop-shadow(
-            0 0 25px
-            rgba(255,145,190,.12)
-        );
-
-    opacity:0;
-
-    transform:
-        translateY(70px)
-        rotateX(80deg)
-        scale(.6);
-
-    animation:
-
-        letterEntrance
-        1.4s
-        cubic-bezier(.16,1,.3,1)
-        forwards,
-
-        liquidGold
-        6s
-        linear
-        infinite;
-
-    transition:
-        transform
-        .35s
-        cubic-bezier(.2,.8,.2,1),
-
-        filter
-        .35s ease;
-}
-
-
-.letter:nth-child(1){
-    animation-delay:
-        2.7s,
-        4s;
-}
-
-.letter:nth-child(2){
-    animation-delay:
-        2.85s,
-        4s;
-}
-
-.letter:nth-child(3){
-    animation-delay:
-        3s,
-        4s;
-}
-
-.letter:nth-child(4){
-    animation-delay:
-        3.15s,
-        4s;
-}
-
-.letter:nth-child(5){
-    animation-delay:
-        3.3s,
-        4s;
-}
-
-
-@keyframes letterEntrance{
-
-    0%{
-        opacity:0;
-
-        transform:
-            translateY(70px)
-            rotateX(80deg)
-            scale(.6);
-
-        filter:blur(20px);
-    }
-
-    60%{
-        opacity:1;
-    }
-
-    100%{
-        opacity:1;
-
-        transform:
-            translateY(0)
-            rotateX(0)
-            scale(1);
-    }
-}
-
-
-@keyframes liquidGold{
+@keyframes borderFlow{
     to{
         background-position:
             -300% 0;
@@ -853,344 +902,482 @@ canvas{
 
 
 /* =========================================================
-   LETTER HOVER
+   LABEL
 ========================================================= */
 
-@media (hover:hover){
+.small-title{
+    font-family:
+        "Cormorant Garamond",
+        serif;
 
-    .letter:hover{
+    color:
+        rgba(255,226,200,.72);
 
-        transform:
-            translateY(-18px)
-            scale(1.08)
-            rotateY(8deg);
+    font-size:13px;
 
-        filter:
+    letter-spacing:10px;
 
-            drop-shadow(
-                0 3px 0
-                rgba(255,255,220,.9)
-            )
+    text-transform:uppercase;
 
-            drop-shadow(
-                0 10px 2px
-                #704018
-            )
-
-            drop-shadow(
-                0 25px 25px
-                rgba(0,0,0,.6)
-            )
-
-            drop-shadow(
-                0 0 40px
-                rgba(255,113,180,.65)
-            );
-    }
-
+    margin-bottom:25px;
 }
 
 
 /* =========================================================
-   GOLD LINE
+   NEGIN TITLE
 ========================================================= */
 
-.gold-line{
-    width:0;
-    height:1px;
+.name{
+    position:relative;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    white-space:nowrap;
+
+    margin-bottom:5px;
+
+    perspective:800px;
+
+    user-select:none;
+}
+
+.letter{
+    display:inline-block;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        clamp(110px,11vw,190px);
+
+    line-height:.78;
+
+    font-weight:500;
+
+    color:transparent;
+
+    background:
+        linear-gradient(
+            115deg,
+            #6e351b 0%,
+            #e39b4e 9%,
+            #fff0bc 17%,
+            #d76b9d 28%,
+            #ffd8e5 36%,
+            #ffe3a0 46%,
+            #8f421d 55%,
+            #ffd48b 65%,
+            #fff4c9 72%,
+            #e981aa 83%,
+            #ffe5a2 92%,
+            #8a421f 100%
+        );
+
+    background-size:
+        300% 100%;
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    filter:
+        drop-shadow(
+            0 1px 0
+            #fff2c4
+        )
+
+        drop-shadow(
+            0 4px 1px
+            #703a20
+        )
+
+        drop-shadow(
+            0 10px 10px
+            rgba(0,0,0,.7)
+        )
+
+        drop-shadow(
+            0 0 18px
+            rgba(255,133,177,.28)
+        );
+
+    animation:
+        goldFlow
+        7s
+        linear
+        infinite;
+
+    transition:
+        transform .35s ease,
+        filter .35s ease;
+}
+
+@keyframes goldFlow{
+    to{
+        background-position:
+            -300% 0;
+    }
+}
+
+.letter:hover{
+    transform:
+        translateY(-13px)
+        scale(1.07);
+
+    filter:
+        drop-shadow(
+            0 0 12px
+            white
+        )
+
+        drop-shadow(
+            0 0 30px
+            var(--rose)
+        );
+}
+
+
+/* =========================================================
+   CROWN
+========================================================= */
+
+.crown{
+    position:absolute;
+
+    top:-38px;
+    left:50%;
+
+    transform:
+        translateX(-50%);
+
+    font-size:38px;
+
+    color:var(--gold);
+
+    text-shadow:
+        0 0 12px
+        var(--gold),
+        0 0 25px
+        var(--rose);
+
+    animation:
+        crownFloat
+        3s
+        ease-in-out
+        infinite;
+}
+
+@keyframes crownFloat{
+    50%{
+        transform:
+            translateX(-50%)
+            translateY(-7px)
+            rotate(3deg);
+    }
+}
+
+
+/* =========================================================
+   SCRIPT
+========================================================= */
+
+.script{
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size:
+        clamp(32px,4vw,55px);
+
+    font-weight:400;
+
+    color:
+        #ffe0c7;
+
+    margin-top:18px;
+
+    text-shadow:
+        0 0 18px
+        rgba(255,160,190,.25);
+}
+
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.divider{
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    gap:15px;
+
+    width:80%;
 
     margin:
-        32px auto 0;
+        28px auto;
+
+    color:var(--gold);
+}
+
+.divider::before,
+.divider::after{
+    content:"";
+
+    height:1px;
+    flex:1;
 
     background:
         linear-gradient(
             90deg,
             transparent,
-            #d9933e,
-            #fff7c9,
-            #d9933e,
+            var(--gold),
             transparent
         );
-
-    box-shadow:
-        0 0 15px
-        #ffc96e;
-
-    animation:
-        lineGrow
-        2s
-        3.7s
-        forwards;
-}
-
-@keyframes lineGrow{
-    to{
-        width:320px;
-    }
 }
 
 
 /* =========================================================
-   TAGLINE
+   ATTRIBUTES
 ========================================================= */
 
-.tagline{
-    margin-top:25px;
+.attributes{
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    color:
+        rgba(255,228,206,.74);
+
+    font-size:12px;
+
+    letter-spacing:6px;
+
+    text-transform:uppercase;
+}
+
+
+/* =========================================================
+   QUOTE
+========================================================= */
+
+.quote{
+    max-width:500px;
+
+    margin:
+        30px auto 0;
+
+    color:
+        rgba(255,225,211,.65);
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:15px;
+
+    line-height:2;
+
+    letter-spacing:4px;
+
+    text-transform:uppercase;
+}
+
+.quote-heart{
+    margin-top:18px;
+
+    color:#ffafc4;
+
+    font-size:20px;
+
+    text-shadow:
+        0 0 18px
+        var(--rose);
+
+    animation:
+        heartPulse
+        2s
+        infinite;
+}
+
+
+/* =========================================================
+   SIDE WORDS
+========================================================= */
+
+.side-words{
+    position:absolute;
+
+    right:18px;
+    top:50%;
+
+    transform:
+        translateY(-50%);
+
+    display:flex;
+    flex-direction:column;
+
+    gap:14px;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
 
     font-size:9px;
 
-    letter-spacing:7px;
-
-    text-transform:uppercase;
+    letter-spacing:3px;
 
     color:
-        rgba(255,232,220,.45);
+        rgba(255,225,206,.5);
 
-    opacity:0;
-
-    animation:
-        fadeUp
-        1.5s
-        4s
-        forwards;
-}
-
-@keyframes fadeUp{
-
-    from{
-        opacity:0;
-
-        transform:
-            translateY(15px);
-    }
-
-    to{
-        opacity:1;
-
-        transform:
-            translateY(0);
-    }
+    text-transform:uppercase;
 }
 
 
 /* =========================================================
-   FLOWERS
+   BUTTERFLY
 ========================================================= */
 
-.flower{
+.butterfly{
     position:absolute;
 
-    width:180px;
-    height:180px;
+    z-index:25;
 
-    z-index:8;
+    width:50px;
+    height:40px;
 
-    opacity:0;
+    pointer-events:none;
+
+    filter:
+        drop-shadow(
+            0 0 10px
+            #ffc783
+        );
+}
+
+.butterfly.one{
+    top:17%;
+    right:20%;
 
     animation:
+        butterflyFly
+        10s
+        ease-in-out
+        infinite;
+}
 
-        flowerAppear
-        2s
-        4.2s
-        forwards,
+.butterfly.two{
+    left:8%;
+    bottom:18%;
 
-        flowerFloat
-        5s
-        6.2s
+    transform:scale(.75);
+
+    animation:
+        butterflyFly2
+        12s
+        ease-in-out
+        infinite;
+}
+
+.wing{
+    position:absolute;
+
+    width:27px;
+    height:34px;
+
+    top:0;
+
+    border:
+        1px solid
+        #ffd695;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,234,183,.75),
+            rgba(255,128,179,.22)
+        );
+
+    box-shadow:
+        inset 0 0 12px
+        rgba(255,255,255,.5),
+        0 0 15px
+        rgba(255,172,106,.5);
+}
+
+.wing.left{
+    left:0;
+
+    border-radius:
+        90% 15%
+        75% 20%;
+
+    transform-origin:right center;
+
+    animation:
+        wingLeft
+        .5s
         ease-in-out
         infinite
         alternate;
 }
 
-.flower.left{
-    left:-45px;
-    bottom:-25px;
-}
-
-.flower.right{
-    right:-45px;
-    top:-30px;
-}
-
-@keyframes flowerAppear{
-
-    from{
-        opacity:0;
-
-        transform:
-            scale(0)
-            rotate(-30deg);
-    }
-
-    to{
-        opacity:.75;
-
-        transform:
-            scale(1)
-            rotate(0);
-    }
-}
-
-@keyframes flowerFloat{
-
-    to{
-        transform:
-            translateY(-12px)
-            rotate(5deg);
-    }
-}
-
-
-.petal-shape{
-    position:absolute;
-
-    width:62px;
-    height:95px;
-
-    left:59px;
-    top:25px;
-
-    transform-origin:
-        50% 70px;
+.wing.right{
+    right:0;
 
     border-radius:
-        80% 10%
-        70% 20%;
+        15% 90%
+        20% 75%;
 
-    background:
-
-        radial-gradient(
-            circle at 45% 25%,
-            rgba(255,255,255,.8),
-            transparent 27%
-        ),
-
-        linear-gradient(
-            140deg,
-            #ffd2df,
-            #d74d8e
-        );
-
-    box-shadow:
-
-        inset 0 0 25px
-        rgba(255,255,255,.35),
-
-        0 0 20px
-        rgba(255,80,155,.18);
-}
-
-
-.petal-shape:nth-child(1){
-    transform:
-        rotate(0deg)
-        translateY(-25px);
-}
-
-.petal-shape:nth-child(2){
-    transform:
-        rotate(72deg)
-        translateY(-25px);
-}
-
-.petal-shape:nth-child(3){
-    transform:
-        rotate(144deg)
-        translateY(-25px);
-}
-
-.petal-shape:nth-child(4){
-    transform:
-        rotate(216deg)
-        translateY(-25px);
-}
-
-.petal-shape:nth-child(5){
-    transform:
-        rotate(288deg)
-        translateY(-25px);
-}
-
-
-.flower-core{
-    position:absolute;
-
-    width:30px;
-    height:30px;
-
-    left:75px;
-    top:70px;
-
-    border-radius:50%;
-
-    background:
-        radial-gradient(
-            circle,
-            #fff7bd,
-            #d99735 60%,
-            #7d3e0f
-        );
-
-    box-shadow:
-
-        0 0 15px white,
-
-        0 0 30px
-        #ffc66c;
-}
-
-
-/* =========================================================
-   VINES
-========================================================= */
-
-.vine{
-    position:absolute;
-
-    width:250px;
-    height:120px;
-
-    border-bottom:
-        2px solid
-        rgba(218,165,80,.45);
-
-    border-radius:50%;
-
-    opacity:0;
+    transform-origin:left center;
 
     animation:
-        vineGrow
-        2s
-        4.4s
-        forwards;
+        wingRight
+        .5s
+        ease-in-out
+        infinite
+        alternate;
 }
 
-.vine-left{
-    bottom:50px;
-    left:60px;
-
-    transform:
-        rotate(10deg);
-}
-
-.vine-right{
-    top:60px;
-    right:70px;
-
-    transform:
-        rotate(190deg);
-}
-
-@keyframes vineGrow{
-
-    from{
-        opacity:0;
-        width:0;
-    }
-
+@keyframes wingLeft{
     to{
-        opacity:1;
-        width:250px;
+        transform:
+            rotateY(65deg);
+    }
+}
+
+@keyframes wingRight{
+    to{
+        transform:
+            rotateY(-65deg);
+    }
+}
+
+@keyframes butterflyFly{
+    50%{
+        transform:
+            translate(
+                -80px,
+                40px
+            )
+            rotate(10deg);
+    }
+}
+
+@keyframes butterflyFly2{
+    50%{
+        transform:
+            translate(
+                100px,
+                -60px
+            )
+            scale(.75)
+            rotate(-10deg);
     }
 }
 
@@ -1200,27 +1387,31 @@ canvas{
 ========================================================= */
 
 .falling-petal{
-    position:absolute;
+    position:fixed;
 
-    width:14px;
+    z-index:40;
+
+    width:15px;
     height:24px;
 
-    border-radius:
-        80% 5%
-        80% 20%;
+    top:-40px;
 
-    background:
-        linear-gradient(
-            135deg,
-            #ffd4df,
-            #d64e91
-        );
+    border-radius:
+        80% 10%
+        70% 20%;
 
     pointer-events:none;
 
-    z-index:20;
+    background:
+        linear-gradient(
+            140deg,
+            #ffe2e8,
+            #dc6595
+        );
 
-    opacity:.65;
+    box-shadow:
+        0 0 10px
+        rgba(255,122,172,.35);
 
     animation:
         petalFall
@@ -1232,11 +1423,7 @@ canvas{
 
     from{
         transform:
-            translate3d(
-                0,
-                -80px,
-                0
-            )
+            translate3d(0,-50px,0)
             rotate(0deg);
     }
 
@@ -1245,7 +1432,7 @@ canvas{
             translate3d(
                 70px,
                 50vh,
-                80px
+                0
             )
             rotate(360deg);
     }
@@ -1269,14 +1456,14 @@ canvas{
 .cursor{
     position:fixed;
 
-    width:10px;
-    height:10px;
+    width:8px;
+    height:8px;
 
     border-radius:50%;
 
     background:white;
 
-    z-index:1000;
+    z-index:9999;
 
     pointer-events:none;
 
@@ -1284,30 +1471,24 @@ canvas{
         translate(-50%,-50%);
 
     box-shadow:
-
-        0 0 10px white,
-
-        0 0 25px
-        #ff9bc8,
-
-        0 0 50px
-        #ff73b3;
+        0 0 8px white,
+        0 0 20px var(--rose),
+        0 0 35px var(--gold);
 }
-
 
 .cursor-ring{
     position:fixed;
 
-    width:46px;
-    height:46px;
+    width:42px;
+    height:42px;
 
     border-radius:50%;
 
     border:
         1px solid
-        rgba(255,202,226,.5);
+        rgba(255,210,180,.45);
 
-    z-index:999;
+    z-index:9998;
 
     pointer-events:none;
 
@@ -1315,142 +1496,43 @@ canvas{
         translate(-50%,-50%);
 
     transition:
-        left .12s ease-out,
-        top .12s ease-out,
-        width .25s ease,
-        height .25s ease,
-        border-color .25s ease;
+        left .1s ease-out,
+        top .1s ease-out,
+        width .3s ease,
+        height .3s ease;
 }
 
 
 /* =========================================================
-   CURSOR DUST
-========================================================= */
-
-.dust{
-    position:fixed;
-
-    width:4px;
-    height:4px;
-
-    border-radius:50%;
-
-    background:#ffe3a0;
-
-    pointer-events:none;
-
-    z-index:900;
-
-    box-shadow:
-
-        0 0 7px white,
-
-        0 0 14px
-        #ffaece;
-
-    animation:
-        dustFade
-        .8s
-        forwards;
-}
-
-@keyframes dustFade{
-
-    to{
-        opacity:0;
-
-        transform:
-            translateY(-20px)
-            scale(.1);
-    }
-}
-
-
-/* =========================================================
-   SHOCKWAVE
-========================================================= */
-
-.shockwave{
-    position:fixed;
-
-    width:20px;
-    height:20px;
-
-    border-radius:50%;
-
-    border:
-        1px solid
-        rgba(255,222,171,.8);
-
-    transform:
-        translate(-50%,-50%);
-
-    pointer-events:none;
-
-    z-index:50;
-
-    box-shadow:
-
-        0 0 20px
-        rgba(255,160,205,.5),
-
-        inset 0 0 20px
-        rgba(255,255,255,.25);
-
-    animation:
-        shock
-        1s
-        ease-out
-        forwards;
-}
-
-@keyframes shock{
-
-    to{
-        width:700px;
-        height:700px;
-
-        opacity:0;
-
-        border-width:0;
-    }
-}
-
-
-/* =========================================================
-   MAGIC EXPLOSION
+   MAGIC PARTICLES
 ========================================================= */
 
 .magic{
     position:fixed;
 
-    width:6px;
-    height:6px;
+    z-index:999;
+
+    width:5px;
+    height:5px;
 
     border-radius:50%;
 
-    background:#ffe5a1;
+    background:#ffe4a5;
 
     pointer-events:none;
 
-    z-index:100;
-
     box-shadow:
-
-        0 0 10px white,
-
-        0 0 20px
-        #ff9fc8;
+        0 0 8px white,
+        0 0 15px var(--rose);
 
     animation:
-        explode
+        magicBurst
         1s
         ease-out
         forwards;
 }
 
-@keyframes explode{
-
+@keyframes magicBurst{
     to{
         opacity:0;
 
@@ -1465,452 +1547,382 @@ canvas{
 
 
 /* =========================================================
-   SECRET HEART
+   SHOCKWAVE
 ========================================================= */
 
-.heart-message{
+.shockwave{
     position:fixed;
 
-    inset:0;
+    z-index:800;
 
-    z-index:200;
+    width:20px;
+    height:20px;
 
-    display:flex;
+    border:
+        1px solid
+        rgba(255,214,157,.8);
 
-    justify-content:center;
-    align-items:center;
+    border-radius:50%;
 
     pointer-events:none;
-
-    opacity:0;
-}
-
-.heart{
-    font-size:
-        min(30vw,300px);
-
-    color:#ff86b8;
-
-    filter:
-
-        drop-shadow(
-            0 0 20px white
-        )
-
-        drop-shadow(
-            0 0 60px
-            #ff5fa7
-        )
-
-        drop-shadow(
-            0 0 130px
-            #ff3b93
-        );
 
     transform:
-        scale(.1);
+        translate(-50%,-50%);
+
+    box-shadow:
+        0 0 25px
+        rgba(255,133,178,.5);
 
     animation:
-        heartBoom
-        2.2s
-        forwards;
-}
-
-@keyframes heartBoom{
-
-    0%{
-        opacity:0;
-        transform:scale(.1);
-    }
-
-    35%{
-        opacity:.9;
-        transform:scale(1.1);
-    }
-
-    60%{
-        transform:scale(.9);
-    }
-
-    100%{
-        opacity:0;
-        transform:scale(1.5);
-    }
-}
-
-
-/* =========================================================
-   INTRO FLASH
-========================================================= */
-
-.flash{
-    position:fixed;
-
-    inset:0;
-
-    background:white;
-
-    z-index:500;
-
-    pointer-events:none;
-
-    opacity:0;
-
-    animation:
-        introFlash
+        shockwave
         1s
-        2.15s
+        ease-out
         forwards;
 }
 
-@keyframes introFlash{
+@keyframes shockwave{
+    to{
+        width:650px;
+        height:650px;
 
-    0%{
-        opacity:0;
-    }
-
-    20%{
-        opacity:.65;
-    }
-
-    100%{
         opacity:0;
     }
 }
 
 
 /* =========================================================
-   TABLETS + MOBILE
+   BOTTOM BRAND
 ========================================================= */
 
-@media (max-width:900px){
+.bottom-brand{
+    position:absolute;
 
-    html,
-    body{
-        width:100%;
-        height:100%;
-        min-height:100%;
+    z-index:25;
 
-        overflow:hidden;
+    bottom:18px;
+    left:50%;
 
-        overscroll-behavior:none;
+    transform:
+        translateX(-50%);
 
-        -webkit-text-size-adjust:100%;
-    }
+    text-align:center;
+
+    white-space:nowrap;
+}
+
+.bottom-brand strong{
+    display:block;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    color:var(--gold-light);
+
+    font-size:17px;
+
+    font-weight:500;
+
+    letter-spacing:8px;
+}
+
+.bottom-brand span{
+    display:block;
+
+    margin-top:6px;
+
+    color:
+        rgba(255,225,205,.48);
+
+    font-size:8px;
+
+    letter-spacing:5px;
+
+    text-transform:uppercase;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media(max-width:1000px){
 
     body{
         cursor:auto;
-
-        touch-action:manipulation;
     }
 
-    .universe{
+    .cursor,
+    .cursor-ring{
+        display:none;
+    }
+
+    .hero{
+        align-items:flex-start;
+
+        min-height:auto;
+    }
+
+    .layout{
         width:100%;
 
-        height:100vh;
-        height:100dvh;
+        min-height:auto;
 
-        min-height:100svh;
+        grid-template-columns:1fr;
+
+        gap:0;
 
         padding:
-            max(15px,env(safe-area-inset-top))
-            max(15px,env(safe-area-inset-right))
-            max(15px,env(safe-area-inset-bottom))
-            max(15px,env(safe-area-inset-left));
+            100px 20px
+            90px;
     }
 
-    .stage{
+    .portrait-area{
+        min-height:auto;
+
+        order:1;
+    }
+
+    .portrait-frame{
+        width:min(90vw,600px);
+        height:min(100vw,650px);
+
+        border-radius:
+            45% 45%
+            8% 8% /
+            18% 18%
+            8% 8%;
+    }
+
+    .content-area{
+        order:2;
+
+        min-height:auto;
+
+        margin-top:-45px;
+
+        z-index:30;
+    }
+
+    .glass-card{
+        width:min(92vw,680px);
+
+        padding:
+            65px 35px
+            55px;
+    }
+
+    .moon{
+        width:85vw;
+
+        left:-25vw;
+        top:-15vw;
+    }
+
+    .top-decoration{
+        font-size:9px;
+
+        letter-spacing:4px;
+
+        gap:10px;
+    }
+
+    .top-decoration .line{
+        max-width:100px;
+    }
+
+    .side-words{
+        display:none;
+    }
+
+    .cluster-right{
+        display:none;
+    }
+
+    .bottom-brand{
+        position:absolute;
+
+        bottom:22px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:600px){
+
+    .layout{
+        padding:
+            max(
+                85px,
+                env(safe-area-inset-top)
+            )
+            12px
+            90px;
+    }
+
+    .top-decoration{
+        top:
+            max(
+                20px,
+                env(safe-area-inset-top)
+            );
+
+        left:14px;
+        right:14px;
+
+        font-size:7px;
+
+        letter-spacing:2.5px;
+    }
+
+    .top-decoration .line{
+        max-width:45px;
+    }
+
+    .top-heart{
+        font-size:18px;
+    }
+
+    .portrait-frame{
+        width:92vw;
+        height:112vw;
+
+        max-height:590px;
+
+        border-radius:
+            44% 44%
+            7% 7% /
+            15% 15%
+            7% 7%;
+    }
+
+    .portrait-frame img{
+        object-position:
+            center 18%;
+    }
+
+    .content-area{
+        margin-top:-25px;
+    }
+
+    .glass-card{
         width:94vw;
 
-        height:auto;
-
-        min-height:58vh;
-
-        max-height:78dvh;
-
         padding:
-            45px 20px;
+            58px 15px
+            45px;
 
-        border-radius:32px;
-
-        transform:none !important;
+        border-radius:27px;
     }
 
-    .stage::before{
-        opacity:.5;
-    }
+    .small-title{
+        font-size:9px;
 
-    .content{
-        width:100%;
+        letter-spacing:5px;
 
-        transform:
-            translateZ(40px);
+        margin-bottom:22px;
     }
 
     .name{
         width:100%;
-
-        gap:0;
-
-        justify-content:center;
-
-        white-space:nowrap;
     }
 
     .letter{
         font-size:
             clamp(
-                68px,
-                22vw,
-                150px
+                65px,
+                21vw,
+                110px
             );
 
-        line-height:.8;
-
-        letter-spacing:-.035em;
+        letter-spacing:-.045em;
     }
 
-    .diamond-wrapper{
-        width:70px;
-        height:60px;
+    .crown{
+        top:-28px;
 
-        margin-bottom:12px;
+        font-size:29px;
     }
 
-    .diamond{
-        width:30px;
-        height:30px;
-    }
-
-    .ray{
-        width:90px;
-
-        left:-10px;
-        top:30px;
-    }
-
-    .intro{
-        font-size:8px;
-
-        letter-spacing:
+    .script{
+        font-size:
             clamp(
-                3px,
-                1.5vw,
-                6px
-            );
-
-        margin-bottom:25px;
-    }
-
-    .tagline{
-        font-size:7px;
-
-        letter-spacing:
-            clamp(
-                2px,
-                1vw,
-                4px
+                28px,
+                9vw,
+                42px
             );
 
         margin-top:20px;
     }
 
-    .gold-line{
-        max-width:55vw;
+    .divider{
+        width:88%;
 
-        margin-top:25px;
+        margin:
+            23px auto;
     }
 
-    @keyframes lineGrow{
-
-        to{
-            width:55vw;
-        }
-    }
-
-    .flower{
-        width:130px;
-        height:130px;
-    }
-
-    .flower.left{
-        left:-45px;
-        bottom:-30px;
-    }
-
-    .flower.right{
-        right:-45px;
-        top:-25px;
-    }
-
-    .petal-shape{
-        width:45px;
-        height:70px;
-
-        left:43px;
-        top:20px;
-
-        transform-origin:
-            50% 50px;
-    }
-
-    .petal-shape:nth-child(1){
-        transform:
-            rotate(0deg)
-            translateY(-18px);
-    }
-
-    .petal-shape:nth-child(2){
-        transform:
-            rotate(72deg)
-            translateY(-18px);
-    }
-
-    .petal-shape:nth-child(3){
-        transform:
-            rotate(144deg)
-            translateY(-18px);
-    }
-
-    .petal-shape:nth-child(4){
-        transform:
-            rotate(216deg)
-            translateY(-18px);
-    }
-
-    .petal-shape:nth-child(5){
-        transform:
-            rotate(288deg)
-            translateY(-18px);
-    }
-
-    .flower-core{
-        width:22px;
-        height:22px;
-
-        left:54px;
-        top:50px;
-    }
-
-    .vine{
-        width:160px;
-        height:80px;
-    }
-
-    .vine-left{
-        left:20px;
-        bottom:25px;
-    }
-
-    .vine-right{
-        right:20px;
-        top:25px;
-    }
-
-    @keyframes vineGrow{
-
-        from{
-            opacity:0;
-            width:0;
-        }
-
-        to{
-            opacity:1;
-            width:160px;
-        }
-    }
-
-    .corner{
-        width:50px;
-        height:50px;
-    }
-
-    .c1{
-        top:15px;
-        left:15px;
-    }
-
-    .c2{
-        top:15px;
-        right:15px;
-    }
-
-    .c3{
-        bottom:15px;
-        left:15px;
-    }
-
-    .c4{
-        bottom:15px;
-        right:15px;
-    }
-
-    .cursor,
-    .cursor-ring{
-        display:none !important;
-    }
-
-}
-
-
-/* =========================================================
-   SMALL PHONES
-========================================================= */
-
-@media (max-width:480px){
-
-    .stage{
-        width:94vw;
-
-        min-height:52vh;
-
-        padding:
-            40px 12px;
-
-        border-radius:27px;
-    }
-
-    .letter{
-        font-size:
-            clamp(
-                60px,
-                21.5vw,
-                105px
-            );
-
-        letter-spacing:-.055em;
-    }
-
-    .intro{
-        font-size:7px;
+    .attributes{
+        font-size:8px;
 
         letter-spacing:3px;
 
-        margin-bottom:22px;
+        line-height:2;
     }
 
-    .tagline{
-        font-size:6px;
+    .quote{
+        font-size:11px;
+
+        line-height:1.8;
 
         letter-spacing:2px;
+
+        padding:
+            0 10px;
     }
 
-    .diamond-wrapper{
-        margin-bottom:8px;
+    .flower-cluster{
+        transform:
+            scale(.7);
     }
 
-    .flower{
-        opacity:.55;
+    .cluster-left{
+        left:-40px;
+        bottom:-20px;
     }
 
-    .flower.left{
-        left:-55px;
-        bottom:-35px;
+    .butterfly.one{
+        right:5%;
+        top:13%;
     }
 
-    .flower.right{
-        right:-55px;
-        top:-35px;
+    .butterfly.two{
+        display:none;
+    }
+
+    .moon{
+        width:115vw;
+
+        left:-55vw;
+        top:-5vw;
+
+        opacity:.45;
+    }
+
+    .bottom-brand strong{
+        font-size:13px;
+
+        letter-spacing:5px;
+    }
+
+    .bottom-brand span{
+        font-size:6px;
+
+        letter-spacing:3px;
     }
 
 }
@@ -1920,34 +1932,31 @@ canvas{
    VERY SMALL PHONES
 ========================================================= */
 
-@media (max-width:360px){
+@media(max-width:380px){
 
-    .stage{
-        width:95vw;
+    .portrait-frame{
+        height:118vw;
+    }
 
-        min-height:50vh;
-
+    .glass-card{
         padding:
-            35px 8px;
+            52px 10px
+            40px;
     }
 
     .letter{
-        font-size:20.5vw;
+        font-size:20vw;
     }
 
-    .intro{
+    .attributes{
         letter-spacing:2px;
-    }
-
-    .tagline{
-        letter-spacing:1.5px;
     }
 
 }
 
 
 /* =========================================================
-   PHONE LANDSCAPE
+   LANDSCAPE PHONE
 ========================================================= */
 
 @media
@@ -1955,47 +1964,52 @@ canvas{
 and
 (orientation:landscape){
 
-    .stage{
-        width:82vw;
-
-        min-height:82dvh;
-
-        max-height:90dvh;
+    .layout{
+        grid-template-columns:
+            .9fr 1.1fr;
 
         padding:
-            20px 30px;
+            65px 25px
+            45px;
+
+        gap:20px;
+    }
+
+    .portrait-frame{
+        width:38vw;
+        height:75vh;
+    }
+
+    .content-area{
+        margin:0;
+    }
+
+    .glass-card{
+        width:100%;
+
+        padding:
+            35px 20px;
     }
 
     .letter{
-        font-size:
-            clamp(
-                65px,
-                18vh,
-                120px
-            );
+        font-size:14vh;
     }
 
-    .diamond-wrapper{
-        height:40px;
-
-        margin-bottom:5px;
+    .script{
+        font-size:7vh;
     }
 
-    .diamond{
-        width:24px;
-        height:24px;
+    .quote{
+        display:none;
     }
 
-    .intro{
-        margin-bottom:15px;
+    .divider{
+        margin:
+            14px auto;
     }
 
-    .gold-line{
-        margin-top:15px;
-    }
-
-    .tagline{
-        margin-top:12px;
+    .portrait-area{
+        min-height:auto;
     }
 
 }
@@ -2005,19 +2019,14 @@ and
    REDUCED MOTION
 ========================================================= */
 
-@media
-(max-width:600px)
-and
-(prefers-reduced-motion:reduce){
+@media(prefers-reduced-motion:reduce){
 
     *,
     *::before,
     *::after{
         animation-duration:.01ms !important;
         animation-iteration-count:1 !important;
-        transition-duration:.01ms !important;
     }
-
 }
 
 </style>
@@ -2026,136 +2035,114 @@ and
 
 <body>
 
+<section class="hero" id="hero">
 
-<div class="universe" id="universe">
+    <div class="background-photo"></div>
 
+    <div class="moon"></div>
 
-    <!-- AURORA -->
-
-    <div class="aurora">
-
-        <div class="aura a1"></div>
-
-        <div class="aura a2"></div>
-
-        <div class="aura a3"></div>
-
-    </div>
+    <div id="stars"></div>
 
 
-    <!-- LIGHT BEAMS -->
+    <!-- TOP -->
 
-    <div class="beams">
+    <div class="top-decoration">
 
-        <div class="beam b1"></div>
+        <span>A RARE SOUL</span>
 
-        <div class="beam b2"></div>
+        <div class="line"></div>
+
+        <div class="top-heart">♡</div>
+
+        <div class="line"></div>
+
+        <span>A BRIGHTER WORLD</span>
 
     </div>
 
 
-    <!-- PARTICLES -->
+    <!-- BUTTERFLIES -->
 
-    <canvas id="particleCanvas"></canvas>
+    <div class="butterfly one">
 
+        <div class="wing left"></div>
+        <div class="wing right"></div>
 
-    <!-- MAIN GLASS -->
+    </div>
 
-    <main class="stage" id="stage">
+    <div class="butterfly two">
 
+        <div class="wing left"></div>
+        <div class="wing right"></div>
 
-        <div class="corner c1"></div>
-        <div class="corner c2"></div>
-        <div class="corner c3"></div>
-        <div class="corner c4"></div>
-
-
-        <!-- VINES -->
-
-        <div class="vine vine-left"></div>
-
-        <div class="vine vine-right"></div>
+    </div>
 
 
-        <!-- LEFT FLOWER -->
+    <!-- MAIN -->
 
-        <div class="flower left">
-
-            <div class="petal-shape"></div>
-            <div class="petal-shape"></div>
-            <div class="petal-shape"></div>
-            <div class="petal-shape"></div>
-            <div class="petal-shape"></div>
-
-            <div class="flower-core"></div>
-
-        </div>
+    <div class="layout">
 
 
-        <!-- RIGHT FLOWER -->
+        <!-- ===============================================
+             PHOTO
+        ================================================ -->
 
-        <div class="flower right">
+        <div class="portrait-area">
 
-            <div class="petal-shape"></div>
-            <div class="petal-shape"></div>
-            <div class="petal-shape"></div>
-            <div class="petal-shape"></div>
-            <div class="petal-shape"></div>
-
-            <div class="flower-core"></div>
-
-        </div>
+            <div class="portrait-glow"></div>
 
 
-        <!-- CENTER -->
+            <div class="portrait-frame">
 
-        <div class="content">
-
-
-            <!-- DIAMOND -->
-
-            <div class="diamond-wrapper">
-
-                <div class="ray r1"></div>
-                <div class="ray r2"></div>
-                <div class="ray r3"></div>
-                <div class="ray r4"></div>
-
-                <div class="diamond"></div>
+                <img
+                    src="negin.jpg"
+                    alt="NEGIN"
+                >
 
             </div>
 
 
-            <div class="intro">
+            <!-- FLOWERS -->
 
-                ✦ MADE OF LIGHT ✦
+            <div class="flower-cluster cluster-left">
 
-            </div>
+                <div class="flower">
 
+                    <span class="flower-petal"></span>
+                    <span class="flower-petal"></span>
+                    <span class="flower-petal"></span>
+                    <span class="flower-petal"></span>
+                    <span class="flower-petal"></span>
 
-            <!-- NEGIN -->
+                    <span class="flower-center"></span>
 
-            <div class="name" id="name">
-
-                <span class="letter">N</span>
-
-                <span class="letter">E</span>
-
-                <span class="letter">G</span>
-
-                <span class="letter">I</span>
-
-                <span class="letter">N</span>
-
-            </div>
+                </div>
 
 
-            <div class="gold-line"></div>
+                <div class="flower">
+
+                    <span class="flower-petal"></span>
+                    <span class="flower-petal"></span>
+                    <span class="flower-petal"></span>
+                    <span class="flower-petal"></span>
+                    <span class="flower-petal"></span>
+
+                    <span class="flower-center"></span>
+
+                </div>
 
 
-            <div class="tagline">
+                <div class="flower">
 
-                BEAUTIFUL • RARE • UNFORGETTABLE
+                    <span class="flower-petal"></span>
+                    <span class="flower-petal"></span>
+                    <span class="flower-petal"></span>
+                    <span class="flower-petal"></span>
+                    <span class="flower-petal"></span>
+
+                    <span class="flower-center"></span>
+
+                </div>
 
             </div>
 
@@ -2163,469 +2150,290 @@ and
         </div>
 
 
-    </main>
+        <!-- ===============================================
+             NEGIN CONTENT
+        ================================================ -->
+
+        <div class="content-area">
+
+            <div class="glass-card" id="card">
 
 
-</div>
+                <div class="small-title">
+
+                    MORE THAN A NAME
+
+                </div>
 
 
-<!-- CURSOR -->
+                <div class="name" id="name">
+
+                    <div class="crown">♕</div>
+
+                    <span class="letter">N</span>
+                    <span class="letter">E</span>
+                    <span class="letter">G</span>
+                    <span class="letter">I</span>
+                    <span class="letter">N</span>
+
+                </div>
+
+
+                <div class="script">
+
+                    Beautiful Inside and Out
+
+                </div>
+
+
+                <div class="divider">
+
+                    ♡
+
+                </div>
+
+
+                <div class="attributes">
+
+                    KIND HEART ✦ BRIGHT MIND ✦ RARE SOUL
+
+                </div>
+
+
+                <div class="quote">
+
+                    Some people make the world more beautiful
+                    just by being in it.
+
+                </div>
+
+
+                <div class="quote-heart">
+
+                    ♥
+
+                </div>
+
+
+                <div class="side-words">
+
+                    <span>Dream</span>
+                    <span>Create</span>
+                    <span>Inspire</span>
+                    <span>Shine</span>
+                    <span>Always</span>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- BOTTOM -->
+
+    <div class="bottom-brand">
+
+        <strong>NEGIN</strong>
+
+        <span>A STORY STILL BLOOMING</span>
+
+    </div>
+
+</section>
+
+
+<!-- CUSTOM CURSOR -->
 
 <div class="cursor" id="cursor"></div>
 
 <div class="cursor-ring" id="cursorRing"></div>
 
 
-<!-- INTRO FLASH -->
-
-<div class="flash"></div>
-
-
 <script>
 
 /* =========================================================
-   ELEMENTS
+   DEVICE
 ========================================================= */
 
-const universe =
-document.getElementById("universe");
-
-const stage =
-document.getElementById("stage");
-
-const cursor =
-document.getElementById("cursor");
-
-const cursorRing =
-document.getElementById("cursorRing");
-
-const name =
-document.getElementById("name");
-
-const letters =
-document.querySelectorAll(".letter");
-
-
-/* =========================================================
-   TOUCH DETECTION
-========================================================= */
-
-const isTouchDevice =
+const touchDevice =
     "ontouchstart" in window ||
     navigator.maxTouchPoints > 0;
 
 
 /* =========================================================
-   CANVAS
+   ELEMENTS
 ========================================================= */
 
-const canvas =
-document.getElementById("particleCanvas");
+const hero =
+    document.getElementById("hero");
 
-const ctx =
-canvas.getContext("2d");
+const name =
+    document.getElementById("name");
 
-let width;
-let height;
+const card =
+    document.getElementById("card");
 
-let particles = [];
+const letters =
+    document.querySelectorAll(".letter");
 
-let mouse = {
-    x:-1000,
-    y:-1000
-};
+const cursor =
+    document.getElementById("cursor");
 
+const cursorRing =
+    document.getElementById("cursorRing");
 
-function resize(){
-
-    const ratio =
-        Math.min(
-            window.devicePixelRatio || 1,
-            2
-        );
-
-    width =
-        window.innerWidth;
-
-    height =
-        window.innerHeight;
-
-    canvas.width =
-        width * ratio;
-
-    canvas.height =
-        height * ratio;
-
-    canvas.style.width =
-        width + "px";
-
-    canvas.style.height =
-        height + "px";
-
-    ctx.setTransform(
-        ratio,
-        0,
-        0,
-        ratio,
-        0,
-        0
-    );
-}
-
-resize();
-
-window.addEventListener(
-    "resize",
-    resize
-);
+const stars =
+    document.getElementById("stars");
 
 
 /* =========================================================
-   PARTICLE
+   CREATE STARS
 ========================================================= */
 
-class Particle{
-
-    constructor(){
-
-        this.x =
-            Math.random() * width;
-
-        this.y =
-            Math.random() * height;
-
-        this.size =
-            Math.random() * 1.8 + .4;
-
-        this.vx =
-            (Math.random() - .5) * .15;
-
-        this.vy =
-            (Math.random() - .5) * .15;
-
-        this.alpha =
-            Math.random() * .7 + .15;
-
-        this.baseAlpha =
-            this.alpha;
-
-        this.r =
-            255;
-
-        this.g =
-            Math.floor(
-                190 +
-                Math.random() * 50
-            );
-
-        this.b =
-            Math.floor(
-                200 +
-                Math.random() * 40
-            );
-    }
-
-
-    update(){
-
-        this.x += this.vx;
-
-        this.y += this.vy;
-
-
-        if(this.x < 0)
-            this.x = width;
-
-        if(this.x > width)
-            this.x = 0;
-
-        if(this.y < 0)
-            this.y = height;
-
-        if(this.y > height)
-            this.y = 0;
-
-
-        const dx =
-            mouse.x - this.x;
-
-        const dy =
-            mouse.y - this.y;
-
-        const distance =
-            Math.sqrt(
-                dx * dx +
-                dy * dy
-            );
-
-
-        if(distance < 130){
-
-            const force =
-                (130 - distance) /
-                130;
-
-            this.x -=
-                dx *
-                force *
-                .025;
-
-            this.y -=
-                dy *
-                force *
-                .025;
-
-            this.alpha = 1;
-
-        }
-
-        else{
-
-            this.alpha +=
-                (
-                    this.baseAlpha -
-                    this.alpha
-                ) * .05;
-        }
-    }
-
-
-    draw(){
-
-        ctx.beginPath();
-
-        ctx.arc(
-            this.x,
-            this.y,
-            this.size,
-            0,
-            Math.PI * 2
-        );
-
-        ctx.fillStyle =
-            `rgba(
-                ${this.r},
-                ${this.g},
-                ${this.b},
-                ${this.alpha}
-            )`;
-
-        ctx.shadowBlur = 10;
-
-        ctx.shadowColor =
-            "rgba(255,160,210,.8)";
-
-        ctx.fill();
-    }
-}
-
-
-/* =========================================================
-   CREATE PARTICLES
-========================================================= */
-
-const particleCount =
-    isTouchDevice
-    ? 90
-    : 170;
+const starAmount =
+    touchDevice
+        ? 55
+        : 110;
 
 
 for(
     let i = 0;
-    i < particleCount;
+    i < starAmount;
     i++
 ){
 
-    particles.push(
-        new Particle()
+    const star =
+        document.createElement("span");
+
+    star.className =
+        "star";
+
+
+    star.style.left =
+        Math.random() *
+        100 +
+        "%";
+
+
+    star.style.top =
+        Math.random() *
+        100 +
+        "%";
+
+
+    const size =
+        Math.random() *
+        2.5 +
+        1;
+
+
+    star.style.width =
+        size +
+        "px";
+
+
+    star.style.height =
+        size +
+        "px";
+
+
+    star.style.setProperty(
+        "--speed",
+        Math.random() *
+        3 +
+        1.5 +
+        "s"
     );
+
+
+    star.style.animationDelay =
+        Math.random() *
+        -5 +
+        "s";
+
+
+    stars.appendChild(
+        star
+    );
+
 }
 
 
 /* =========================================================
-   ANIMATE PARTICLES
+   MOUSE MOVEMENT
 ========================================================= */
 
-function animateParticles(){
+if(!touchDevice){
 
-    ctx.clearRect(
-        0,
-        0,
-        width,
-        height
-    );
+    document.addEventListener(
+        "mousemove",
+        e => {
+
+            const x =
+                e.clientX;
+
+            const y =
+                e.clientY;
 
 
-    particles.forEach(
-        particle => {
+            cursor.style.left =
+                x +
+                "px";
 
-            particle.update();
+            cursor.style.top =
+                y +
+                "px";
 
-            particle.draw();
+
+            cursorRing.style.left =
+                x +
+                "px";
+
+            cursorRing.style.top =
+                y +
+                "px";
+
+
+            const xp =
+                x /
+                window.innerWidth;
+
+            const yp =
+                y /
+                window.innerHeight;
+
+
+            document.documentElement
+                .style.setProperty(
+                    "--mx",
+                    xp *
+                    100 +
+                    "%"
+                );
+
+
+            document.documentElement
+                .style.setProperty(
+                    "--my",
+                    yp *
+                    100 +
+                    "%"
+                );
+
+
+            magneticLetters(
+                x,
+                y
+            );
 
         }
     );
 
-
-    requestAnimationFrame(
-        animateParticles
-    );
-}
-
-animateParticles();
-
-
-/* =========================================================
-   DESKTOP MOUSE
-========================================================= */
-
-if(!isTouchDevice){
-
-document.addEventListener(
-"mousemove",
-e=>{
-
-    mouse.x =
-        e.clientX;
-
-    mouse.y =
-        e.clientY;
-
-
-    const xp =
-        e.clientX /
-        window.innerWidth;
-
-    const yp =
-        e.clientY /
-        window.innerHeight;
-
-
-    document.documentElement
-        .style.setProperty(
-            "--mx",
-            xp * 100 + "%"
-        );
-
-
-    document.documentElement
-        .style.setProperty(
-            "--my",
-            yp * 100 + "%"
-        );
-
-
-    const rotateY =
-        (xp - .5) * 8;
-
-    const rotateX =
-        (.5 - yp) * 6;
-
-
-    document.documentElement
-        .style.setProperty(
-            "--rx",
-            rotateX + "deg"
-        );
-
-
-    document.documentElement
-        .style.setProperty(
-            "--ry",
-            rotateY + "deg"
-        );
-
-
-    cursor.style.left =
-        e.clientX + "px";
-
-    cursor.style.top =
-        e.clientY + "px";
-
-
-    cursorRing.style.left =
-        e.clientX + "px";
-
-    cursorRing.style.top =
-        e.clientY + "px";
-
-
-    createDust(
-        e.clientX,
-        e.clientY
-    );
-
-
-    magneticLetters(
-        e.clientX,
-        e.clientY
-    );
-
-});
-
-}
-
-
-/* =========================================================
-   CURSOR DUST
-========================================================= */
-
-let dustTimer = 0;
-
-
-function createDust(x,y){
-
-    dustTimer++;
-
-
-    if(dustTimer % 3 !== 0)
-        return;
-
-
-    const dust =
-        document.createElement(
-            "div"
-        );
-
-
-    dust.className =
-        "dust";
-
-
-    dust.style.left =
-        x +
-        (Math.random() - .5) *
-        15 +
-        "px";
-
-
-    dust.style.top =
-        y +
-        (Math.random() - .5) *
-        15 +
-        "px";
-
-
-    const size =
-        Math.random() * 4 + 2;
-
-
-    dust.style.width =
-        size + "px";
-
-    dust.style.height =
-        size + "px";
-
-
-    document.body.appendChild(
-        dust
-    );
-
-
-    setTimeout(
-        () => dust.remove(),
-        800
-    );
 }
 
 
@@ -2633,7 +2441,10 @@ function createDust(x,y){
    MAGNETIC LETTERS
 ========================================================= */
 
-function magneticLetters(mx,my){
+function magneticLetters(
+    mx,
+    my
+){
 
     letters.forEach(
         letter => {
@@ -2642,20 +2453,26 @@ function magneticLetters(mx,my){
                 letter.getBoundingClientRect();
 
 
-            const cx =
+            const centerX =
                 rect.left +
-                rect.width / 2;
+                rect.width /
+                2;
 
-            const cy =
+
+            const centerY =
                 rect.top +
-                rect.height / 2;
+                rect.height /
+                2;
 
 
             const dx =
-                mx - cx;
+                mx -
+                centerX;
+
 
             const dy =
-                my - cy;
+                my -
+                centerY;
 
 
             const distance =
@@ -2665,28 +2482,32 @@ function magneticLetters(mx,my){
                 );
 
 
-            if(distance < 150){
+            if(
+                distance <
+                140
+            ){
 
-                const strength =
+                const force =
                     (
-                        150 -
+                        140 -
                         distance
-                    ) / 150;
+                    ) /
+                    140;
 
 
                 letter.style.transform =
                     `
                     translate(
-                        ${dx * .08 * strength}px,
-                        ${dy * .08 * strength}px
+                        ${dx * .05 * force}px,
+                        ${dy * .05 * force}px
                     )
 
                     translateY(
-                        ${-12 * strength}px
+                        ${-10 * force}px
                     )
 
                     scale(
-                        ${1 + strength * .06}
+                        ${1 + force * .05}
                     )
                     `;
 
@@ -2701,11 +2522,12 @@ function magneticLetters(mx,my){
 
         }
     );
+
 }
 
 
 /* =========================================================
-   FALLING PETALS
+   PETALS
 ========================================================= */
 
 function createPetal(){
@@ -2726,30 +2548,27 @@ function createPetal(){
         "vw";
 
 
-    petal.style.top =
-        "-40px";
-
-
     const size =
         Math.random() *
-        12 +
-        8;
+        10 +
+        7;
 
 
     petal.style.width =
-        size + "px";
+        size +
+        "px";
 
 
     petal.style.height =
         size *
-        1.6 +
+        1.55 +
         "px";
 
 
     const duration =
         Math.random() *
-        7 +
-        8;
+        6 +
+        7;
 
 
     petal.style.animationDuration =
@@ -2763,31 +2582,121 @@ function createPetal(){
         .25;
 
 
-    universe.appendChild(
+    document.body.appendChild(
         petal
     );
 
 
     setTimeout(
         () => petal.remove(),
-        duration * 1000
+        duration *
+        1000
     );
+
 }
 
 
 setInterval(
     createPetal,
-    isTouchDevice
-        ? 800
-        : 430
+    touchDevice
+        ? 900
+        : 500
 );
+
+
+/* =========================================================
+   EXPLOSION
+========================================================= */
+
+function explosion(
+    x,
+    y
+){
+
+    const amount =
+        touchDevice
+            ? 20
+            : 35;
+
+
+    for(
+        let i = 0;
+        i < amount;
+        i++
+    ){
+
+        const dot =
+            document.createElement(
+                "div"
+            );
+
+
+        dot.className =
+            "magic";
+
+
+        dot.style.left =
+            x +
+            "px";
+
+
+        dot.style.top =
+            y +
+            "px";
+
+
+        const angle =
+            Math.random() *
+            Math.PI *
+            2;
+
+
+        const distance =
+            Math.random() *
+            150 +
+            30;
+
+
+        dot.style.setProperty(
+            "--dx",
+            Math.cos(angle) *
+            distance +
+            "px"
+        );
+
+
+        dot.style.setProperty(
+            "--dy",
+            Math.sin(angle) *
+            distance +
+            "px"
+        );
+
+
+        document.body.appendChild(
+            dot
+        );
+
+
+        setTimeout(
+            () =>
+                dot.remove(),
+            1000
+        );
+
+    }
+
+}
 
 
 /* =========================================================
    SHOCKWAVE
 ========================================================= */
 
-function createShockwave(x,y){
+function shockwave(
+    x,
+    y
+){
 
     const wave =
         document.createElement(
@@ -2800,10 +2709,13 @@ function createShockwave(x,y){
 
 
     wave.style.left =
-        x + "px";
+        x +
+        "px";
+
 
     wave.style.top =
-        y + "px";
+        y +
+        "px";
 
 
     document.body.appendChild(
@@ -2812,403 +2724,95 @@ function createShockwave(x,y){
 
 
     setTimeout(
-        () => wave.remove(),
+        () =>
+            wave.remove(),
         1000
     );
+
 }
 
 
 /* =========================================================
-   EXPLOSION
+   CLICK
 ========================================================= */
-
-function createExplosion(
-    x,
-    y,
-    amount = null
-){
-
-    const count =
-        amount ??
-        (
-            isTouchDevice
-                ? 30
-                : 50
-        );
-
-
-    for(
-        let i = 0;
-        i < count;
-        i++
-    ){
-
-        const particle =
-            document.createElement(
-                "div"
-            );
-
-
-        particle.className =
-            "magic";
-
-
-        particle.style.left =
-            x + "px";
-
-        particle.style.top =
-            y + "px";
-
-
-        const angle =
-            Math.random() *
-            Math.PI *
-            2;
-
-
-        const distance =
-            Math.random() *
-            180 +
-            30;
-
-
-        const dx =
-            Math.cos(angle) *
-            distance;
-
-
-        const dy =
-            Math.sin(angle) *
-            distance;
-
-
-        particle.style.setProperty(
-            "--dx",
-            dx + "px"
-        );
-
-
-        particle.style.setProperty(
-            "--dy",
-            dy + "px"
-        );
-
-
-        const size =
-            Math.random() *
-            7 +
-            2;
-
-
-        particle.style.width =
-            size + "px";
-
-
-        particle.style.height =
-            size + "px";
-
-
-        document.body.appendChild(
-            particle
-        );
-
-
-        setTimeout(
-            () => particle.remove(),
-            1000
-        );
-    }
-}
-
-
-/* =========================================================
-   DESKTOP CLICK
-========================================================= */
-
-if(!isTouchDevice){
 
 document.addEventListener(
-"click",
-e=>{
-
-    createShockwave(
-        e.clientX,
-        e.clientY
-    );
-
-
-    createExplosion(
-        e.clientX,
-        e.clientY
-    );
-
-});
-
-}
-
-
-/* =========================================================
-   LETTER CLICK DESKTOP
-========================================================= */
-
-if(!isTouchDevice){
-
-letters.forEach(
-letter=>{
-
-    letter.addEventListener(
     "click",
-    e=>{
+    e => {
 
-        e.stopPropagation();
-
-
-        createExplosion(
+        explosion(
             e.clientX,
             e.clientY
         );
 
 
-        animateLetter(
-            letter
-        );
-
-    });
-
-});
-
-}
-
-
-/* =========================================================
-   LETTER ANIMATION
-========================================================= */
-
-function animateLetter(letter){
-
-    letter.animate(
-
-        [
-
-            {
-                transform:
-                    "scale(1)"
-            },
-
-            {
-                transform:
-                    "scale(1.25) translateY(-25px)"
-            },
-
-            {
-                transform:
-                    "scale(.95)"
-            },
-
-            {
-                transform:
-                    "scale(1)"
-            }
-
-        ],
-
-        {
-
-            duration:650,
-
-            easing:
-                "cubic-bezier(.2,.8,.2,1)"
-
-        }
-
-    );
-}
-
-
-/* =========================================================
-   DESKTOP DOUBLE CLICK
-========================================================= */
-
-if(!isTouchDevice){
-
-name.addEventListener(
-"dblclick",
-e=>{
-
-    e.stopPropagation();
-
-    secretHeart();
-
-});
-
-}
-
-
-/* =========================================================
-   SECRET HEART
-========================================================= */
-
-function secretHeart(){
-
-    const container =
-        document.createElement(
-            "div"
-        );
-
-
-    container.className =
-        "heart-message";
-
-
-    const heart =
-        document.createElement(
-            "div"
-        );
-
-
-    heart.className =
-        "heart";
-
-
-    heart.innerHTML =
-        "♥";
-
-
-    container.appendChild(
-        heart
-    );
-
-
-    document.body.appendChild(
-        container
-    );
-
-
-    container.style.opacity =
-        1;
-
-
-    const bursts =
-        isTouchDevice
-            ? 4
-            : 7;
-
-
-    for(
-        let i = 0;
-        i < bursts;
-        i++
-    ){
-
-        setTimeout(
-        ()=>{
-
-            createExplosion(
-
-                window.innerWidth / 2 +
-                (
-                    Math.random() -
-                    .5
-                ) *
-                300,
-
-                window.innerHeight / 2 +
-                (
-                    Math.random() -
-                    .5
-                ) *
-                200,
-
-                isTouchDevice
-                    ? 20
-                    : 40
-
-            );
-
-        },
-        i * 130
+        shockwave(
+            e.clientX,
+            e.clientY
         );
 
     }
-
-
-    stage.animate(
-
-        [
-
-            {
-                filter:
-                    "brightness(1)"
-            },
-
-            {
-                filter:
-                    "brightness(1.8) saturate(1.5)"
-            },
-
-            {
-                filter:
-                    "brightness(1)"
-            }
-
-        ],
-
-        {
-
-            duration:1800,
-
-            easing:"ease"
-
-        }
-
-    );
-
-
-    setTimeout(
-        () => container.remove(),
-        2300
-    );
-}
+);
 
 
 /* =========================================================
-   DESKTOP NAME HOVER
+   LETTER CLICK
 ========================================================= */
 
-if(!isTouchDevice){
+letters.forEach(
+    letter => {
 
-name.addEventListener(
-"mouseenter",
-()=>{
+        letter.addEventListener(
+            "click",
+            e => {
 
-    cursorRing.style.width =
-        "90px";
-
-    cursorRing.style.height =
-        "90px";
-
-    cursorRing.style.borderColor =
-        "rgba(255,220,160,.8)";
-
-});
+                e.stopPropagation();
 
 
-name.addEventListener(
-"mouseleave",
-()=>{
+                explosion(
+                    e.clientX,
+                    e.clientY
+                );
 
-    cursorRing.style.width =
-        "46px";
 
-    cursorRing.style.height =
-        "46px";
+                letter.animate(
 
-    cursorRing.style.borderColor =
-        "rgba(255,202,226,.5)";
+                    [
+                        {
+                            transform:
+                                "scale(1)"
+                        },
 
-});
+                        {
+                            transform:
+                                "translateY(-20px) scale(1.2)"
+                        },
 
-}
+                        {
+                            transform:
+                                "scale(.95)"
+                        },
+
+                        {
+                            transform:
+                                "scale(1)"
+                        }
+                    ],
+
+                    {
+                        duration:650,
+
+                        easing:
+                            "cubic-bezier(.16,1,.3,1)"
+                    }
+
+                );
+
+            }
+        );
+
+    }
+);
 
 
 /* =========================================================
@@ -3216,221 +2820,126 @@ name.addEventListener(
 ========================================================= */
 
 document.addEventListener(
-"touchmove",
-e=>{
+    "touchmove",
+    e => {
 
-    if(!e.touches.length)
-        return;
-
-
-    const touch =
-        e.touches[0];
-
-
-    const xp =
-        touch.clientX /
-        window.innerWidth;
-
-
-    const yp =
-        touch.clientY /
-        window.innerHeight;
-
-
-    document.documentElement
-        .style.setProperty(
-            "--mx",
-            xp * 100 + "%"
-        );
-
-
-    document.documentElement
-        .style.setProperty(
-            "--my",
-            yp * 100 + "%"
-        );
-
-
-    mouse.x =
-        touch.clientX;
-
-    mouse.y =
-        touch.clientY;
-
-
-    magneticLetters(
-        touch.clientX,
-        touch.clientY
-    );
-
-},
-{
-    passive:true
-});
-
-
-/* =========================================================
-   MOBILE TOUCH EXPLOSION
-========================================================= */
-
-document.addEventListener(
-"touchstart",
-e=>{
-
-    if(!e.touches.length)
-        return;
-
-
-    const touch =
-        e.touches[0];
-
-
-    createShockwave(
-        touch.clientX,
-        touch.clientY
-    );
-
-
-    createExplosion(
-        touch.clientX,
-        touch.clientY
-    );
-
-},
-{
-    passive:true
-});
-
-
-/* =========================================================
-   MOBILE LETTER TOUCH
-========================================================= */
-
-letters.forEach(
-letter=>{
-
-    letter.addEventListener(
-    "touchstart",
-    e=>{
-
-        if(!e.touches.length)
+        if(
+            !e.touches.length
+        ){
             return;
+        }
 
 
         const touch =
             e.touches[0];
 
 
-        createExplosion(
+        const xp =
+            touch.clientX /
+            window.innerWidth;
+
+
+        const yp =
+            touch.clientY /
+            window.innerHeight;
+
+
+        document.documentElement
+            .style.setProperty(
+                "--mx",
+                xp *
+                100 +
+                "%"
+            );
+
+
+        document.documentElement
+            .style.setProperty(
+                "--my",
+                yp *
+                100 +
+                "%"
+            );
+
+
+        magneticLetters(
             touch.clientX,
-            touch.clientY,
-            20
-        );
-
-
-        animateLetter(
-            letter
+            touch.clientY
         );
 
     },
     {
         passive:true
-    });
-
-});
+    }
+);
 
 
 /* =========================================================
-   DOUBLE TAP SECRET
-========================================================= */
-
-let lastTap = 0;
-
-
-name.addEventListener(
-"touchend",
-()=>{
-
-    const now =
-        Date.now();
-
-
-    const difference =
-        now -
-        lastTap;
-
-
-    if(
-        difference < 350 &&
-        difference > 0
-    ){
-
-        secretHeart();
-
-        lastTap = 0;
-
-    }
-
-    else{
-
-        lastTap =
-            now;
-
-    }
-
-},
-{
-    passive:true
-});
-
-
-/* =========================================================
-   RESET MOBILE PARTICLE POSITION
+   MOBILE TOUCH MAGIC
 ========================================================= */
 
 document.addEventListener(
-"touchend",
-()=>{
+    "touchstart",
+    e => {
 
-    setTimeout(
-    ()=>{
+        if(
+            !e.touches.length
+        ){
+            return;
+        }
 
-        mouse.x =
-            -1000;
 
-        mouse.y =
-            -1000;
+        const touch =
+            e.touches[0];
 
-        letters.forEach(
-            letter=>{
-                letter.style.transform="";
-            }
+
+        explosion(
+            touch.clientX,
+            touch.clientY
+        );
+
+
+        shockwave(
+            touch.clientX,
+            touch.clientY
         );
 
     },
-    500
-    );
-
-},
-{
-    passive:true
-});
+    {
+        passive:true
+    }
+);
 
 
 /* =========================================================
-   ORIENTATION CHANGE
+   RESET TOUCH LETTERS
 ========================================================= */
 
-window.addEventListener(
-"orientationchange",
-()=>{
+document.addEventListener(
+    "touchend",
+    () => {
 
-    setTimeout(
-        resize,
-        300
-    );
+        setTimeout(
+            () => {
 
-});
+                letters.forEach(
+                    letter => {
+
+                        letter.style.transform =
+                            "";
+
+                    }
+                );
+
+            },
+            350
+        );
+
+    },
+    {
+        passive:true
+    }
+);
 
 </script>
 
