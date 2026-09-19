@@ -1,0 +1,3438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<title>NEGIN ✦ Enchanted</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#030104;
+}
+
+body{
+    font-family:Montserrat,sans-serif;
+    cursor:none;
+    overscroll-behavior:none;
+    -webkit-tap-highlight-color:transparent;
+}
+
+:root{
+    --mx:50%;
+    --my:50%;
+    --rx:0deg;
+    --ry:0deg;
+}
+
+
+/* =========================================================
+   UNIVERSE
+========================================================= */
+
+.universe{
+    position:relative;
+
+    width:100vw;
+    height:100vh;
+    height:100dvh;
+
+    overflow:hidden;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    perspective:1400px;
+
+    background:
+
+        radial-gradient(
+            circle at var(--mx) var(--my),
+            rgba(255,170,210,.10),
+            transparent 22%
+        ),
+
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(255,45,140,.09),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 85% 75%,
+            rgba(135,50,255,.12),
+            transparent 35%
+        ),
+
+        linear-gradient(
+            145deg,
+            #020103,
+            #100610 45%,
+            #050207
+        );
+}
+
+
+/* =========================================================
+   CANVAS
+========================================================= */
+
+canvas{
+    position:absolute;
+    inset:0;
+
+    width:100%;
+    height:100%;
+}
+
+#particleCanvas{
+    z-index:4;
+    pointer-events:none;
+}
+
+
+/* =========================================================
+   AURORA
+========================================================= */
+
+.aurora{
+    position:absolute;
+
+    inset:-30%;
+
+    filter:blur(100px);
+
+    opacity:.8;
+
+    z-index:0;
+}
+
+.aura{
+    position:absolute;
+
+    border-radius:50%;
+
+    mix-blend-mode:screen;
+}
+
+.a1{
+    width:55vw;
+    height:55vw;
+
+    left:5%;
+    top:5%;
+
+    background:
+        rgba(255,42,139,.16);
+
+    animation:
+        aura1
+        14s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+.a2{
+    width:50vw;
+    height:50vw;
+
+    right:0;
+    bottom:0;
+
+    background:
+        rgba(122,56,255,.18);
+
+    animation:
+        aura2
+        18s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+.a3{
+    width:40vw;
+    height:40vw;
+
+    left:38%;
+    top:30%;
+
+    background:
+        rgba(255,181,87,.10);
+
+    animation:
+        aura3
+        12s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+@keyframes aura1{
+    to{
+        transform:
+            translate(25vw,15vh)
+            scale(1.3);
+    }
+}
+
+@keyframes aura2{
+    to{
+        transform:
+            translate(-25vw,-18vh)
+            scale(.8);
+    }
+}
+
+@keyframes aura3{
+    to{
+        transform:
+            translate(-15vw,18vh)
+            scale(1.4);
+    }
+}
+
+
+/* =========================================================
+   LIGHT BEAMS
+========================================================= */
+
+.beams{
+    position:absolute;
+
+    inset:0;
+
+    z-index:1;
+
+    pointer-events:none;
+
+    overflow:hidden;
+}
+
+.beam{
+    position:absolute;
+
+    width:2px;
+    height:150vh;
+
+    top:-25vh;
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(255,220,174,.25),
+            transparent
+        );
+
+    filter:blur(2px);
+
+    transform-origin:center;
+}
+
+.b1{
+    left:25%;
+
+    transform:rotate(24deg);
+
+    animation:
+        beamMove
+        8s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+.b2{
+    right:25%;
+
+    transform:rotate(-25deg);
+
+    animation:
+        beamMove2
+        10s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+@keyframes beamMove{
+    to{
+        left:45%;
+        opacity:.2;
+    }
+}
+
+@keyframes beamMove2{
+    to{
+        right:45%;
+        opacity:.15;
+    }
+}
+
+
+/* =========================================================
+   GLASS STAGE
+========================================================= */
+
+.stage{
+    position:relative;
+
+    width:min(88vw,1250px);
+    height:min(66vh,680px);
+
+    z-index:5;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    transform-style:preserve-3d;
+
+    transform:
+        rotateX(var(--rx))
+        rotateY(var(--ry));
+
+    transition:
+        transform .15s ease-out;
+
+    border-radius:55px;
+
+    border:
+        1px solid rgba(255,255,255,.10);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.06),
+            rgba(255,255,255,.008)
+        );
+
+    backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
+
+    box-shadow:
+
+        0 70px 130px
+        rgba(0,0,0,.65),
+
+        inset 0 1px
+        rgba(255,255,255,.17),
+
+        inset 0 -1px
+        rgba(255,130,190,.05),
+
+        0 0 130px
+        rgba(255,88,164,.06);
+
+    opacity:0;
+
+    animation:
+        stageIn
+        2s
+        2.3s
+        cubic-bezier(.16,1,.3,1)
+        forwards;
+}
+
+@keyframes stageIn{
+
+    from{
+        opacity:0;
+
+        transform:
+            scale(.78)
+            translateY(70px)
+            rotateX(15deg);
+
+        filter:blur(20px);
+    }
+
+    to{
+        opacity:1;
+    }
+}
+
+
+/* =========================================================
+   MOUSE LIGHT
+========================================================= */
+
+.stage::before{
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:inherit;
+
+    background:
+        radial-gradient(
+            circle at var(--mx) var(--my),
+            rgba(255,255,255,.17),
+            transparent 20%
+        );
+
+    mix-blend-mode:screen;
+
+    pointer-events:none;
+}
+
+
+/* =========================================================
+   MOVING BORDER
+========================================================= */
+
+.stage::after{
+    content:"";
+
+    position:absolute;
+
+    inset:-1px;
+
+    border-radius:inherit;
+
+    padding:1px;
+
+    background:
+        linear-gradient(
+            115deg,
+            transparent,
+            rgba(255,220,145,.5),
+            transparent 35%,
+            rgba(255,130,190,.35),
+            transparent 70%
+        );
+
+    background-size:300%;
+
+    animation:
+        borderMove
+        7s
+        linear
+        infinite;
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0)
+        content-box,
+        linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite:xor;
+
+    mask-composite:exclude;
+
+    pointer-events:none;
+}
+
+@keyframes borderMove{
+    to{
+        background-position:300%;
+    }
+}
+
+
+/* =========================================================
+   CORNERS
+========================================================= */
+
+.corner{
+    position:absolute;
+
+    width:90px;
+    height:90px;
+
+    opacity:.35;
+}
+
+.c1{
+    top:25px;
+    left:25px;
+
+    border-top:1px solid #ffd894;
+    border-left:1px solid #ffd894;
+}
+
+.c2{
+    top:25px;
+    right:25px;
+
+    border-top:1px solid #ffd894;
+    border-right:1px solid #ffd894;
+}
+
+.c3{
+    bottom:25px;
+    left:25px;
+
+    border-bottom:1px solid #ffd894;
+    border-left:1px solid #ffd894;
+}
+
+.c4{
+    bottom:25px;
+    right:25px;
+
+    border-bottom:1px solid #ffd894;
+    border-right:1px solid #ffd894;
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.content{
+    text-align:center;
+
+    position:relative;
+
+    transform:
+        translateZ(100px);
+
+    z-index:10;
+}
+
+
+/* =========================================================
+   DIAMOND
+========================================================= */
+
+.diamond-wrapper{
+    width:100px;
+    height:80px;
+
+    margin:
+        0 auto 20px;
+
+    position:relative;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.diamond{
+    width:38px;
+    height:38px;
+
+    transform:rotate(45deg);
+
+    border:
+        1px solid rgba(255,235,187,.9);
+
+    background:
+        linear-gradient(
+            135deg,
+            white,
+            #ffc3d8 35%,
+            #ffdfa0 70%,
+            white
+        );
+
+    box-shadow:
+
+        inset 0 0 15px white,
+
+        0 0 12px white,
+
+        0 0 30px
+        rgba(255,158,200,.7),
+
+        0 0 80px
+        rgba(255,154,195,.3);
+
+    animation:
+        diamondFloat
+        4s
+        ease-in-out
+        infinite;
+}
+
+@keyframes diamondFloat{
+
+    50%{
+        transform:
+            translateY(-10px)
+            rotate(225deg)
+            scale(1.15);
+
+        box-shadow:
+
+            inset 0 0 25px white,
+
+            0 0 25px white,
+
+            0 0 60px #ff99c7,
+
+            0 0 110px
+            rgba(255,180,110,.3);
+    }
+}
+
+
+/* =========================================================
+   DIAMOND RAYS
+========================================================= */
+
+.ray{
+    position:absolute;
+
+    width:120px;
+    height:1px;
+
+    top:40px;
+    left:-10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #fff1b6,
+            transparent
+        );
+
+    opacity:.25;
+}
+
+.r1{
+    transform:rotate(0);
+}
+
+.r2{
+    transform:rotate(45deg);
+}
+
+.r3{
+    transform:rotate(90deg);
+}
+
+.r4{
+    transform:rotate(135deg);
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.intro{
+    color:
+        rgba(255,229,219,.5);
+
+    font-size:10px;
+
+    letter-spacing:10px;
+
+    text-transform:uppercase;
+
+    margin-bottom:32px;
+
+    opacity:0;
+
+    animation:
+        fadeUp
+        1.5s
+        3.5s
+        forwards;
+}
+
+
+/* =========================================================
+   NAME
+========================================================= */
+
+.name{
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    perspective:900px;
+
+    user-select:none;
+    -webkit-user-select:none;
+
+    touch-action:manipulation;
+}
+
+
+/* =========================================================
+   LETTERS
+========================================================= */
+
+.letter{
+    display:inline-block;
+
+    position:relative;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        clamp(100px,17vw,245px);
+
+    font-weight:600;
+
+    line-height:.75;
+
+    color:transparent;
+
+    background:
+        linear-gradient(
+            110deg,
+
+            #713713 0%,
+
+            #c47b2c 8%,
+
+            #ffe99b 15%,
+
+            #fff9d8 21%,
+
+            #f3a7bf 31%,
+
+            #fff0b3 40%,
+
+            #9c531a 50%,
+
+            #ffd87b 59%,
+
+            #fff8cc 68%,
+
+            #e99db9 78%,
+
+            #ffe89b 88%,
+
+            #985018 100%
+        );
+
+    background-size:300% 100%;
+
+    -webkit-background-clip:text;
+
+    background-clip:text;
+
+    filter:
+
+        drop-shadow(
+            0 2px 0
+            rgba(255,247,210,.6)
+        )
+
+        drop-shadow(
+            0 6px 1px
+            rgba(70,28,8,.8)
+        )
+
+        drop-shadow(
+            0 15px 12px
+            rgba(0,0,0,.55)
+        )
+
+        drop-shadow(
+            0 0 25px
+            rgba(255,145,190,.12)
+        );
+
+    opacity:0;
+
+    transform:
+        translateY(70px)
+        rotateX(80deg)
+        scale(.6);
+
+    animation:
+
+        letterEntrance
+        1.4s
+        cubic-bezier(.16,1,.3,1)
+        forwards,
+
+        liquidGold
+        6s
+        linear
+        infinite;
+
+    transition:
+        transform
+        .35s
+        cubic-bezier(.2,.8,.2,1),
+
+        filter
+        .35s ease;
+}
+
+
+.letter:nth-child(1){
+    animation-delay:
+        2.7s,
+        4s;
+}
+
+.letter:nth-child(2){
+    animation-delay:
+        2.85s,
+        4s;
+}
+
+.letter:nth-child(3){
+    animation-delay:
+        3s,
+        4s;
+}
+
+.letter:nth-child(4){
+    animation-delay:
+        3.15s,
+        4s;
+}
+
+.letter:nth-child(5){
+    animation-delay:
+        3.3s,
+        4s;
+}
+
+
+@keyframes letterEntrance{
+
+    0%{
+        opacity:0;
+
+        transform:
+            translateY(70px)
+            rotateX(80deg)
+            scale(.6);
+
+        filter:blur(20px);
+    }
+
+    60%{
+        opacity:1;
+    }
+
+    100%{
+        opacity:1;
+
+        transform:
+            translateY(0)
+            rotateX(0)
+            scale(1);
+    }
+}
+
+
+@keyframes liquidGold{
+    to{
+        background-position:
+            -300% 0;
+    }
+}
+
+
+/* =========================================================
+   LETTER HOVER
+========================================================= */
+
+@media (hover:hover){
+
+    .letter:hover{
+
+        transform:
+            translateY(-18px)
+            scale(1.08)
+            rotateY(8deg);
+
+        filter:
+
+            drop-shadow(
+                0 3px 0
+                rgba(255,255,220,.9)
+            )
+
+            drop-shadow(
+                0 10px 2px
+                #704018
+            )
+
+            drop-shadow(
+                0 25px 25px
+                rgba(0,0,0,.6)
+            )
+
+            drop-shadow(
+                0 0 40px
+                rgba(255,113,180,.65)
+            );
+    }
+
+}
+
+
+/* =========================================================
+   GOLD LINE
+========================================================= */
+
+.gold-line{
+    width:0;
+    height:1px;
+
+    margin:
+        32px auto 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #d9933e,
+            #fff7c9,
+            #d9933e,
+            transparent
+        );
+
+    box-shadow:
+        0 0 15px
+        #ffc96e;
+
+    animation:
+        lineGrow
+        2s
+        3.7s
+        forwards;
+}
+
+@keyframes lineGrow{
+    to{
+        width:320px;
+    }
+}
+
+
+/* =========================================================
+   TAGLINE
+========================================================= */
+
+.tagline{
+    margin-top:25px;
+
+    font-size:9px;
+
+    letter-spacing:7px;
+
+    text-transform:uppercase;
+
+    color:
+        rgba(255,232,220,.45);
+
+    opacity:0;
+
+    animation:
+        fadeUp
+        1.5s
+        4s
+        forwards;
+}
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+
+        transform:
+            translateY(15px);
+    }
+
+    to{
+        opacity:1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================================================
+   FLOWERS
+========================================================= */
+
+.flower{
+    position:absolute;
+
+    width:180px;
+    height:180px;
+
+    z-index:8;
+
+    opacity:0;
+
+    animation:
+
+        flowerAppear
+        2s
+        4.2s
+        forwards,
+
+        flowerFloat
+        5s
+        6.2s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+.flower.left{
+    left:-45px;
+    bottom:-25px;
+}
+
+.flower.right{
+    right:-45px;
+    top:-30px;
+}
+
+@keyframes flowerAppear{
+
+    from{
+        opacity:0;
+
+        transform:
+            scale(0)
+            rotate(-30deg);
+    }
+
+    to{
+        opacity:.75;
+
+        transform:
+            scale(1)
+            rotate(0);
+    }
+}
+
+@keyframes flowerFloat{
+
+    to{
+        transform:
+            translateY(-12px)
+            rotate(5deg);
+    }
+}
+
+
+.petal-shape{
+    position:absolute;
+
+    width:62px;
+    height:95px;
+
+    left:59px;
+    top:25px;
+
+    transform-origin:
+        50% 70px;
+
+    border-radius:
+        80% 10%
+        70% 20%;
+
+    background:
+
+        radial-gradient(
+            circle at 45% 25%,
+            rgba(255,255,255,.8),
+            transparent 27%
+        ),
+
+        linear-gradient(
+            140deg,
+            #ffd2df,
+            #d74d8e
+        );
+
+    box-shadow:
+
+        inset 0 0 25px
+        rgba(255,255,255,.35),
+
+        0 0 20px
+        rgba(255,80,155,.18);
+}
+
+
+.petal-shape:nth-child(1){
+    transform:
+        rotate(0deg)
+        translateY(-25px);
+}
+
+.petal-shape:nth-child(2){
+    transform:
+        rotate(72deg)
+        translateY(-25px);
+}
+
+.petal-shape:nth-child(3){
+    transform:
+        rotate(144deg)
+        translateY(-25px);
+}
+
+.petal-shape:nth-child(4){
+    transform:
+        rotate(216deg)
+        translateY(-25px);
+}
+
+.petal-shape:nth-child(5){
+    transform:
+        rotate(288deg)
+        translateY(-25px);
+}
+
+
+.flower-core{
+    position:absolute;
+
+    width:30px;
+    height:30px;
+
+    left:75px;
+    top:70px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #fff7bd,
+            #d99735 60%,
+            #7d3e0f
+        );
+
+    box-shadow:
+
+        0 0 15px white,
+
+        0 0 30px
+        #ffc66c;
+}
+
+
+/* =========================================================
+   VINES
+========================================================= */
+
+.vine{
+    position:absolute;
+
+    width:250px;
+    height:120px;
+
+    border-bottom:
+        2px solid
+        rgba(218,165,80,.45);
+
+    border-radius:50%;
+
+    opacity:0;
+
+    animation:
+        vineGrow
+        2s
+        4.4s
+        forwards;
+}
+
+.vine-left{
+    bottom:50px;
+    left:60px;
+
+    transform:
+        rotate(10deg);
+}
+
+.vine-right{
+    top:60px;
+    right:70px;
+
+    transform:
+        rotate(190deg);
+}
+
+@keyframes vineGrow{
+
+    from{
+        opacity:0;
+        width:0;
+    }
+
+    to{
+        opacity:1;
+        width:250px;
+    }
+}
+
+
+/* =========================================================
+   FALLING PETALS
+========================================================= */
+
+.falling-petal{
+    position:absolute;
+
+    width:14px;
+    height:24px;
+
+    border-radius:
+        80% 5%
+        80% 20%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffd4df,
+            #d64e91
+        );
+
+    pointer-events:none;
+
+    z-index:20;
+
+    opacity:.65;
+
+    animation:
+        petalFall
+        linear
+        forwards;
+}
+
+@keyframes petalFall{
+
+    from{
+        transform:
+            translate3d(
+                0,
+                -80px,
+                0
+            )
+            rotate(0deg);
+    }
+
+    50%{
+        transform:
+            translate3d(
+                70px,
+                50vh,
+                80px
+            )
+            rotate(360deg);
+    }
+
+    to{
+        transform:
+            translate3d(
+                -50px,
+                110vh,
+                0
+            )
+            rotate(720deg);
+    }
+}
+
+
+/* =========================================================
+   CURSOR
+========================================================= */
+
+.cursor{
+    position:fixed;
+
+    width:10px;
+    height:10px;
+
+    border-radius:50%;
+
+    background:white;
+
+    z-index:1000;
+
+    pointer-events:none;
+
+    transform:
+        translate(-50%,-50%);
+
+    box-shadow:
+
+        0 0 10px white,
+
+        0 0 25px
+        #ff9bc8,
+
+        0 0 50px
+        #ff73b3;
+}
+
+
+.cursor-ring{
+    position:fixed;
+
+    width:46px;
+    height:46px;
+
+    border-radius:50%;
+
+    border:
+        1px solid
+        rgba(255,202,226,.5);
+
+    z-index:999;
+
+    pointer-events:none;
+
+    transform:
+        translate(-50%,-50%);
+
+    transition:
+        left .12s ease-out,
+        top .12s ease-out,
+        width .25s ease,
+        height .25s ease,
+        border-color .25s ease;
+}
+
+
+/* =========================================================
+   CURSOR DUST
+========================================================= */
+
+.dust{
+    position:fixed;
+
+    width:4px;
+    height:4px;
+
+    border-radius:50%;
+
+    background:#ffe3a0;
+
+    pointer-events:none;
+
+    z-index:900;
+
+    box-shadow:
+
+        0 0 7px white,
+
+        0 0 14px
+        #ffaece;
+
+    animation:
+        dustFade
+        .8s
+        forwards;
+}
+
+@keyframes dustFade{
+
+    to{
+        opacity:0;
+
+        transform:
+            translateY(-20px)
+            scale(.1);
+    }
+}
+
+
+/* =========================================================
+   SHOCKWAVE
+========================================================= */
+
+.shockwave{
+    position:fixed;
+
+    width:20px;
+    height:20px;
+
+    border-radius:50%;
+
+    border:
+        1px solid
+        rgba(255,222,171,.8);
+
+    transform:
+        translate(-50%,-50%);
+
+    pointer-events:none;
+
+    z-index:50;
+
+    box-shadow:
+
+        0 0 20px
+        rgba(255,160,205,.5),
+
+        inset 0 0 20px
+        rgba(255,255,255,.25);
+
+    animation:
+        shock
+        1s
+        ease-out
+        forwards;
+}
+
+@keyframes shock{
+
+    to{
+        width:700px;
+        height:700px;
+
+        opacity:0;
+
+        border-width:0;
+    }
+}
+
+
+/* =========================================================
+   MAGIC EXPLOSION
+========================================================= */
+
+.magic{
+    position:fixed;
+
+    width:6px;
+    height:6px;
+
+    border-radius:50%;
+
+    background:#ffe5a1;
+
+    pointer-events:none;
+
+    z-index:100;
+
+    box-shadow:
+
+        0 0 10px white,
+
+        0 0 20px
+        #ff9fc8;
+
+    animation:
+        explode
+        1s
+        ease-out
+        forwards;
+}
+
+@keyframes explode{
+
+    to{
+        opacity:0;
+
+        transform:
+            translate(
+                var(--dx),
+                var(--dy)
+            )
+            scale(.1);
+    }
+}
+
+
+/* =========================================================
+   SECRET HEART
+========================================================= */
+
+.heart-message{
+    position:fixed;
+
+    inset:0;
+
+    z-index:200;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    pointer-events:none;
+
+    opacity:0;
+}
+
+.heart{
+    font-size:
+        min(30vw,300px);
+
+    color:#ff86b8;
+
+    filter:
+
+        drop-shadow(
+            0 0 20px white
+        )
+
+        drop-shadow(
+            0 0 60px
+            #ff5fa7
+        )
+
+        drop-shadow(
+            0 0 130px
+            #ff3b93
+        );
+
+    transform:
+        scale(.1);
+
+    animation:
+        heartBoom
+        2.2s
+        forwards;
+}
+
+@keyframes heartBoom{
+
+    0%{
+        opacity:0;
+        transform:scale(.1);
+    }
+
+    35%{
+        opacity:.9;
+        transform:scale(1.1);
+    }
+
+    60%{
+        transform:scale(.9);
+    }
+
+    100%{
+        opacity:0;
+        transform:scale(1.5);
+    }
+}
+
+
+/* =========================================================
+   INTRO FLASH
+========================================================= */
+
+.flash{
+    position:fixed;
+
+    inset:0;
+
+    background:white;
+
+    z-index:500;
+
+    pointer-events:none;
+
+    opacity:0;
+
+    animation:
+        introFlash
+        1s
+        2.15s
+        forwards;
+}
+
+@keyframes introFlash{
+
+    0%{
+        opacity:0;
+    }
+
+    20%{
+        opacity:.65;
+    }
+
+    100%{
+        opacity:0;
+    }
+}
+
+
+/* =========================================================
+   TABLETS + MOBILE
+========================================================= */
+
+@media (max-width:900px){
+
+    html,
+    body{
+        width:100%;
+        height:100%;
+        min-height:100%;
+
+        overflow:hidden;
+
+        overscroll-behavior:none;
+
+        -webkit-text-size-adjust:100%;
+    }
+
+    body{
+        cursor:auto;
+
+        touch-action:manipulation;
+    }
+
+    .universe{
+        width:100%;
+
+        height:100vh;
+        height:100dvh;
+
+        min-height:100svh;
+
+        padding:
+            max(15px,env(safe-area-inset-top))
+            max(15px,env(safe-area-inset-right))
+            max(15px,env(safe-area-inset-bottom))
+            max(15px,env(safe-area-inset-left));
+    }
+
+    .stage{
+        width:94vw;
+
+        height:auto;
+
+        min-height:58vh;
+
+        max-height:78dvh;
+
+        padding:
+            45px 20px;
+
+        border-radius:32px;
+
+        transform:none !important;
+    }
+
+    .stage::before{
+        opacity:.5;
+    }
+
+    .content{
+        width:100%;
+
+        transform:
+            translateZ(40px);
+    }
+
+    .name{
+        width:100%;
+
+        gap:0;
+
+        justify-content:center;
+
+        white-space:nowrap;
+    }
+
+    .letter{
+        font-size:
+            clamp(
+                68px,
+                22vw,
+                150px
+            );
+
+        line-height:.8;
+
+        letter-spacing:-.035em;
+    }
+
+    .diamond-wrapper{
+        width:70px;
+        height:60px;
+
+        margin-bottom:12px;
+    }
+
+    .diamond{
+        width:30px;
+        height:30px;
+    }
+
+    .ray{
+        width:90px;
+
+        left:-10px;
+        top:30px;
+    }
+
+    .intro{
+        font-size:8px;
+
+        letter-spacing:
+            clamp(
+                3px,
+                1.5vw,
+                6px
+            );
+
+        margin-bottom:25px;
+    }
+
+    .tagline{
+        font-size:7px;
+
+        letter-spacing:
+            clamp(
+                2px,
+                1vw,
+                4px
+            );
+
+        margin-top:20px;
+    }
+
+    .gold-line{
+        max-width:55vw;
+
+        margin-top:25px;
+    }
+
+    @keyframes lineGrow{
+
+        to{
+            width:55vw;
+        }
+    }
+
+    .flower{
+        width:130px;
+        height:130px;
+    }
+
+    .flower.left{
+        left:-45px;
+        bottom:-30px;
+    }
+
+    .flower.right{
+        right:-45px;
+        top:-25px;
+    }
+
+    .petal-shape{
+        width:45px;
+        height:70px;
+
+        left:43px;
+        top:20px;
+
+        transform-origin:
+            50% 50px;
+    }
+
+    .petal-shape:nth-child(1){
+        transform:
+            rotate(0deg)
+            translateY(-18px);
+    }
+
+    .petal-shape:nth-child(2){
+        transform:
+            rotate(72deg)
+            translateY(-18px);
+    }
+
+    .petal-shape:nth-child(3){
+        transform:
+            rotate(144deg)
+            translateY(-18px);
+    }
+
+    .petal-shape:nth-child(4){
+        transform:
+            rotate(216deg)
+            translateY(-18px);
+    }
+
+    .petal-shape:nth-child(5){
+        transform:
+            rotate(288deg)
+            translateY(-18px);
+    }
+
+    .flower-core{
+        width:22px;
+        height:22px;
+
+        left:54px;
+        top:50px;
+    }
+
+    .vine{
+        width:160px;
+        height:80px;
+    }
+
+    .vine-left{
+        left:20px;
+        bottom:25px;
+    }
+
+    .vine-right{
+        right:20px;
+        top:25px;
+    }
+
+    @keyframes vineGrow{
+
+        from{
+            opacity:0;
+            width:0;
+        }
+
+        to{
+            opacity:1;
+            width:160px;
+        }
+    }
+
+    .corner{
+        width:50px;
+        height:50px;
+    }
+
+    .c1{
+        top:15px;
+        left:15px;
+    }
+
+    .c2{
+        top:15px;
+        right:15px;
+    }
+
+    .c3{
+        bottom:15px;
+        left:15px;
+    }
+
+    .c4{
+        bottom:15px;
+        right:15px;
+    }
+
+    .cursor,
+    .cursor-ring{
+        display:none !important;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width:480px){
+
+    .stage{
+        width:94vw;
+
+        min-height:52vh;
+
+        padding:
+            40px 12px;
+
+        border-radius:27px;
+    }
+
+    .letter{
+        font-size:
+            clamp(
+                60px,
+                21.5vw,
+                105px
+            );
+
+        letter-spacing:-.055em;
+    }
+
+    .intro{
+        font-size:7px;
+
+        letter-spacing:3px;
+
+        margin-bottom:22px;
+    }
+
+    .tagline{
+        font-size:6px;
+
+        letter-spacing:2px;
+    }
+
+    .diamond-wrapper{
+        margin-bottom:8px;
+    }
+
+    .flower{
+        opacity:.55;
+    }
+
+    .flower.left{
+        left:-55px;
+        bottom:-35px;
+    }
+
+    .flower.right{
+        right:-55px;
+        top:-35px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width:360px){
+
+    .stage{
+        width:95vw;
+
+        min-height:50vh;
+
+        padding:
+            35px 8px;
+    }
+
+    .letter{
+        font-size:20.5vw;
+    }
+
+    .intro{
+        letter-spacing:2px;
+    }
+
+    .tagline{
+        letter-spacing:1.5px;
+    }
+
+}
+
+
+/* =========================================================
+   PHONE LANDSCAPE
+========================================================= */
+
+@media
+(max-height:500px)
+and
+(orientation:landscape){
+
+    .stage{
+        width:82vw;
+
+        min-height:82dvh;
+
+        max-height:90dvh;
+
+        padding:
+            20px 30px;
+    }
+
+    .letter{
+        font-size:
+            clamp(
+                65px,
+                18vh,
+                120px
+            );
+    }
+
+    .diamond-wrapper{
+        height:40px;
+
+        margin-bottom:5px;
+    }
+
+    .diamond{
+        width:24px;
+        height:24px;
+    }
+
+    .intro{
+        margin-bottom:15px;
+    }
+
+    .gold-line{
+        margin-top:15px;
+    }
+
+    .tagline{
+        margin-top:12px;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media
+(max-width:600px)
+and
+(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        transition-duration:.01ms !important;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<div class="universe" id="universe">
+
+
+    <!-- AURORA -->
+
+    <div class="aurora">
+
+        <div class="aura a1"></div>
+
+        <div class="aura a2"></div>
+
+        <div class="aura a3"></div>
+
+    </div>
+
+
+    <!-- LIGHT BEAMS -->
+
+    <div class="beams">
+
+        <div class="beam b1"></div>
+
+        <div class="beam b2"></div>
+
+    </div>
+
+
+    <!-- PARTICLES -->
+
+    <canvas id="particleCanvas"></canvas>
+
+
+    <!-- MAIN GLASS -->
+
+    <main class="stage" id="stage">
+
+
+        <div class="corner c1"></div>
+        <div class="corner c2"></div>
+        <div class="corner c3"></div>
+        <div class="corner c4"></div>
+
+
+        <!-- VINES -->
+
+        <div class="vine vine-left"></div>
+
+        <div class="vine vine-right"></div>
+
+
+        <!-- LEFT FLOWER -->
+
+        <div class="flower left">
+
+            <div class="petal-shape"></div>
+            <div class="petal-shape"></div>
+            <div class="petal-shape"></div>
+            <div class="petal-shape"></div>
+            <div class="petal-shape"></div>
+
+            <div class="flower-core"></div>
+
+        </div>
+
+
+        <!-- RIGHT FLOWER -->
+
+        <div class="flower right">
+
+            <div class="petal-shape"></div>
+            <div class="petal-shape"></div>
+            <div class="petal-shape"></div>
+            <div class="petal-shape"></div>
+            <div class="petal-shape"></div>
+
+            <div class="flower-core"></div>
+
+        </div>
+
+
+        <!-- CENTER -->
+
+        <div class="content">
+
+
+            <!-- DIAMOND -->
+
+            <div class="diamond-wrapper">
+
+                <div class="ray r1"></div>
+                <div class="ray r2"></div>
+                <div class="ray r3"></div>
+                <div class="ray r4"></div>
+
+                <div class="diamond"></div>
+
+            </div>
+
+
+            <div class="intro">
+
+                ✦ MADE OF LIGHT ✦
+
+            </div>
+
+
+            <!-- NEGIN -->
+
+            <div class="name" id="name">
+
+                <span class="letter">N</span>
+
+                <span class="letter">E</span>
+
+                <span class="letter">G</span>
+
+                <span class="letter">I</span>
+
+                <span class="letter">N</span>
+
+            </div>
+
+
+            <div class="gold-line"></div>
+
+
+            <div class="tagline">
+
+                BEAUTIFUL • RARE • UNFORGETTABLE
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
+
+</div>
+
+
+<!-- CURSOR -->
+
+<div class="cursor" id="cursor"></div>
+
+<div class="cursor-ring" id="cursorRing"></div>
+
+
+<!-- INTRO FLASH -->
+
+<div class="flash"></div>
+
+
+<script>
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const universe =
+document.getElementById("universe");
+
+const stage =
+document.getElementById("stage");
+
+const cursor =
+document.getElementById("cursor");
+
+const cursorRing =
+document.getElementById("cursorRing");
+
+const name =
+document.getElementById("name");
+
+const letters =
+document.querySelectorAll(".letter");
+
+
+/* =========================================================
+   TOUCH DETECTION
+========================================================= */
+
+const isTouchDevice =
+    "ontouchstart" in window ||
+    navigator.maxTouchPoints > 0;
+
+
+/* =========================================================
+   CANVAS
+========================================================= */
+
+const canvas =
+document.getElementById("particleCanvas");
+
+const ctx =
+canvas.getContext("2d");
+
+let width;
+let height;
+
+let particles = [];
+
+let mouse = {
+    x:-1000,
+    y:-1000
+};
+
+
+function resize(){
+
+    const ratio =
+        Math.min(
+            window.devicePixelRatio || 1,
+            2
+        );
+
+    width =
+        window.innerWidth;
+
+    height =
+        window.innerHeight;
+
+    canvas.width =
+        width * ratio;
+
+    canvas.height =
+        height * ratio;
+
+    canvas.style.width =
+        width + "px";
+
+    canvas.style.height =
+        height + "px";
+
+    ctx.setTransform(
+        ratio,
+        0,
+        0,
+        ratio,
+        0,
+        0
+    );
+}
+
+resize();
+
+window.addEventListener(
+    "resize",
+    resize
+);
+
+
+/* =========================================================
+   PARTICLE
+========================================================= */
+
+class Particle{
+
+    constructor(){
+
+        this.x =
+            Math.random() * width;
+
+        this.y =
+            Math.random() * height;
+
+        this.size =
+            Math.random() * 1.8 + .4;
+
+        this.vx =
+            (Math.random() - .5) * .15;
+
+        this.vy =
+            (Math.random() - .5) * .15;
+
+        this.alpha =
+            Math.random() * .7 + .15;
+
+        this.baseAlpha =
+            this.alpha;
+
+        this.r =
+            255;
+
+        this.g =
+            Math.floor(
+                190 +
+                Math.random() * 50
+            );
+
+        this.b =
+            Math.floor(
+                200 +
+                Math.random() * 40
+            );
+    }
+
+
+    update(){
+
+        this.x += this.vx;
+
+        this.y += this.vy;
+
+
+        if(this.x < 0)
+            this.x = width;
+
+        if(this.x > width)
+            this.x = 0;
+
+        if(this.y < 0)
+            this.y = height;
+
+        if(this.y > height)
+            this.y = 0;
+
+
+        const dx =
+            mouse.x - this.x;
+
+        const dy =
+            mouse.y - this.y;
+
+        const distance =
+            Math.sqrt(
+                dx * dx +
+                dy * dy
+            );
+
+
+        if(distance < 130){
+
+            const force =
+                (130 - distance) /
+                130;
+
+            this.x -=
+                dx *
+                force *
+                .025;
+
+            this.y -=
+                dy *
+                force *
+                .025;
+
+            this.alpha = 1;
+
+        }
+
+        else{
+
+            this.alpha +=
+                (
+                    this.baseAlpha -
+                    this.alpha
+                ) * .05;
+        }
+    }
+
+
+    draw(){
+
+        ctx.beginPath();
+
+        ctx.arc(
+            this.x,
+            this.y,
+            this.size,
+            0,
+            Math.PI * 2
+        );
+
+        ctx.fillStyle =
+            `rgba(
+                ${this.r},
+                ${this.g},
+                ${this.b},
+                ${this.alpha}
+            )`;
+
+        ctx.shadowBlur = 10;
+
+        ctx.shadowColor =
+            "rgba(255,160,210,.8)";
+
+        ctx.fill();
+    }
+}
+
+
+/* =========================================================
+   CREATE PARTICLES
+========================================================= */
+
+const particleCount =
+    isTouchDevice
+    ? 90
+    : 170;
+
+
+for(
+    let i = 0;
+    i < particleCount;
+    i++
+){
+
+    particles.push(
+        new Particle()
+    );
+}
+
+
+/* =========================================================
+   ANIMATE PARTICLES
+========================================================= */
+
+function animateParticles(){
+
+    ctx.clearRect(
+        0,
+        0,
+        width,
+        height
+    );
+
+
+    particles.forEach(
+        particle => {
+
+            particle.update();
+
+            particle.draw();
+
+        }
+    );
+
+
+    requestAnimationFrame(
+        animateParticles
+    );
+}
+
+animateParticles();
+
+
+/* =========================================================
+   DESKTOP MOUSE
+========================================================= */
+
+if(!isTouchDevice){
+
+document.addEventListener(
+"mousemove",
+e=>{
+
+    mouse.x =
+        e.clientX;
+
+    mouse.y =
+        e.clientY;
+
+
+    const xp =
+        e.clientX /
+        window.innerWidth;
+
+    const yp =
+        e.clientY /
+        window.innerHeight;
+
+
+    document.documentElement
+        .style.setProperty(
+            "--mx",
+            xp * 100 + "%"
+        );
+
+
+    document.documentElement
+        .style.setProperty(
+            "--my",
+            yp * 100 + "%"
+        );
+
+
+    const rotateY =
+        (xp - .5) * 8;
+
+    const rotateX =
+        (.5 - yp) * 6;
+
+
+    document.documentElement
+        .style.setProperty(
+            "--rx",
+            rotateX + "deg"
+        );
+
+
+    document.documentElement
+        .style.setProperty(
+            "--ry",
+            rotateY + "deg"
+        );
+
+
+    cursor.style.left =
+        e.clientX + "px";
+
+    cursor.style.top =
+        e.clientY + "px";
+
+
+    cursorRing.style.left =
+        e.clientX + "px";
+
+    cursorRing.style.top =
+        e.clientY + "px";
+
+
+    createDust(
+        e.clientX,
+        e.clientY
+    );
+
+
+    magneticLetters(
+        e.clientX,
+        e.clientY
+    );
+
+});
+
+}
+
+
+/* =========================================================
+   CURSOR DUST
+========================================================= */
+
+let dustTimer = 0;
+
+
+function createDust(x,y){
+
+    dustTimer++;
+
+
+    if(dustTimer % 3 !== 0)
+        return;
+
+
+    const dust =
+        document.createElement(
+            "div"
+        );
+
+
+    dust.className =
+        "dust";
+
+
+    dust.style.left =
+        x +
+        (Math.random() - .5) *
+        15 +
+        "px";
+
+
+    dust.style.top =
+        y +
+        (Math.random() - .5) *
+        15 +
+        "px";
+
+
+    const size =
+        Math.random() * 4 + 2;
+
+
+    dust.style.width =
+        size + "px";
+
+    dust.style.height =
+        size + "px";
+
+
+    document.body.appendChild(
+        dust
+    );
+
+
+    setTimeout(
+        () => dust.remove(),
+        800
+    );
+}
+
+
+/* =========================================================
+   MAGNETIC LETTERS
+========================================================= */
+
+function magneticLetters(mx,my){
+
+    letters.forEach(
+        letter => {
+
+            const rect =
+                letter.getBoundingClientRect();
+
+
+            const cx =
+                rect.left +
+                rect.width / 2;
+
+            const cy =
+                rect.top +
+                rect.height / 2;
+
+
+            const dx =
+                mx - cx;
+
+            const dy =
+                my - cy;
+
+
+            const distance =
+                Math.sqrt(
+                    dx * dx +
+                    dy * dy
+                );
+
+
+            if(distance < 150){
+
+                const strength =
+                    (
+                        150 -
+                        distance
+                    ) / 150;
+
+
+                letter.style.transform =
+                    `
+                    translate(
+                        ${dx * .08 * strength}px,
+                        ${dy * .08 * strength}px
+                    )
+
+                    translateY(
+                        ${-12 * strength}px
+                    )
+
+                    scale(
+                        ${1 + strength * .06}
+                    )
+                    `;
+
+            }
+
+            else{
+
+                letter.style.transform =
+                    "";
+
+            }
+
+        }
+    );
+}
+
+
+/* =========================================================
+   FALLING PETALS
+========================================================= */
+
+function createPetal(){
+
+    const petal =
+        document.createElement(
+            "div"
+        );
+
+
+    petal.className =
+        "falling-petal";
+
+
+    petal.style.left =
+        Math.random() *
+        100 +
+        "vw";
+
+
+    petal.style.top =
+        "-40px";
+
+
+    const size =
+        Math.random() *
+        12 +
+        8;
+
+
+    petal.style.width =
+        size + "px";
+
+
+    petal.style.height =
+        size *
+        1.6 +
+        "px";
+
+
+    const duration =
+        Math.random() *
+        7 +
+        8;
+
+
+    petal.style.animationDuration =
+        duration +
+        "s";
+
+
+    petal.style.opacity =
+        Math.random() *
+        .5 +
+        .25;
+
+
+    universe.appendChild(
+        petal
+    );
+
+
+    setTimeout(
+        () => petal.remove(),
+        duration * 1000
+    );
+}
+
+
+setInterval(
+    createPetal,
+    isTouchDevice
+        ? 800
+        : 430
+);
+
+
+/* =========================================================
+   SHOCKWAVE
+========================================================= */
+
+function createShockwave(x,y){
+
+    const wave =
+        document.createElement(
+            "div"
+        );
+
+
+    wave.className =
+        "shockwave";
+
+
+    wave.style.left =
+        x + "px";
+
+    wave.style.top =
+        y + "px";
+
+
+    document.body.appendChild(
+        wave
+    );
+
+
+    setTimeout(
+        () => wave.remove(),
+        1000
+    );
+}
+
+
+/* =========================================================
+   EXPLOSION
+========================================================= */
+
+function createExplosion(
+    x,
+    y,
+    amount = null
+){
+
+    const count =
+        amount ??
+        (
+            isTouchDevice
+                ? 30
+                : 50
+        );
+
+
+    for(
+        let i = 0;
+        i < count;
+        i++
+    ){
+
+        const particle =
+            document.createElement(
+                "div"
+            );
+
+
+        particle.className =
+            "magic";
+
+
+        particle.style.left =
+            x + "px";
+
+        particle.style.top =
+            y + "px";
+
+
+        const angle =
+            Math.random() *
+            Math.PI *
+            2;
+
+
+        const distance =
+            Math.random() *
+            180 +
+            30;
+
+
+        const dx =
+            Math.cos(angle) *
+            distance;
+
+
+        const dy =
+            Math.sin(angle) *
+            distance;
+
+
+        particle.style.setProperty(
+            "--dx",
+            dx + "px"
+        );
+
+
+        particle.style.setProperty(
+            "--dy",
+            dy + "px"
+        );
+
+
+        const size =
+            Math.random() *
+            7 +
+            2;
+
+
+        particle.style.width =
+            size + "px";
+
+
+        particle.style.height =
+            size + "px";
+
+
+        document.body.appendChild(
+            particle
+        );
+
+
+        setTimeout(
+            () => particle.remove(),
+            1000
+        );
+    }
+}
+
+
+/* =========================================================
+   DESKTOP CLICK
+========================================================= */
+
+if(!isTouchDevice){
+
+document.addEventListener(
+"click",
+e=>{
+
+    createShockwave(
+        e.clientX,
+        e.clientY
+    );
+
+
+    createExplosion(
+        e.clientX,
+        e.clientY
+    );
+
+});
+
+}
+
+
+/* =========================================================
+   LETTER CLICK DESKTOP
+========================================================= */
+
+if(!isTouchDevice){
+
+letters.forEach(
+letter=>{
+
+    letter.addEventListener(
+    "click",
+    e=>{
+
+        e.stopPropagation();
+
+
+        createExplosion(
+            e.clientX,
+            e.clientY
+        );
+
+
+        animateLetter(
+            letter
+        );
+
+    });
+
+});
+
+}
+
+
+/* =========================================================
+   LETTER ANIMATION
+========================================================= */
+
+function animateLetter(letter){
+
+    letter.animate(
+
+        [
+
+            {
+                transform:
+                    "scale(1)"
+            },
+
+            {
+                transform:
+                    "scale(1.25) translateY(-25px)"
+            },
+
+            {
+                transform:
+                    "scale(.95)"
+            },
+
+            {
+                transform:
+                    "scale(1)"
+            }
+
+        ],
+
+        {
+
+            duration:650,
+
+            easing:
+                "cubic-bezier(.2,.8,.2,1)"
+
+        }
+
+    );
+}
+
+
+/* =========================================================
+   DESKTOP DOUBLE CLICK
+========================================================= */
+
+if(!isTouchDevice){
+
+name.addEventListener(
+"dblclick",
+e=>{
+
+    e.stopPropagation();
+
+    secretHeart();
+
+});
+
+}
+
+
+/* =========================================================
+   SECRET HEART
+========================================================= */
+
+function secretHeart(){
+
+    const container =
+        document.createElement(
+            "div"
+        );
+
+
+    container.className =
+        "heart-message";
+
+
+    const heart =
+        document.createElement(
+            "div"
+        );
+
+
+    heart.className =
+        "heart";
+
+
+    heart.innerHTML =
+        "♥";
+
+
+    container.appendChild(
+        heart
+    );
+
+
+    document.body.appendChild(
+        container
+    );
+
+
+    container.style.opacity =
+        1;
+
+
+    const bursts =
+        isTouchDevice
+            ? 4
+            : 7;
+
+
+    for(
+        let i = 0;
+        i < bursts;
+        i++
+    ){
+
+        setTimeout(
+        ()=>{
+
+            createExplosion(
+
+                window.innerWidth / 2 +
+                (
+                    Math.random() -
+                    .5
+                ) *
+                300,
+
+                window.innerHeight / 2 +
+                (
+                    Math.random() -
+                    .5
+                ) *
+                200,
+
+                isTouchDevice
+                    ? 20
+                    : 40
+
+            );
+
+        },
+        i * 130
+        );
+
+    }
+
+
+    stage.animate(
+
+        [
+
+            {
+                filter:
+                    "brightness(1)"
+            },
+
+            {
+                filter:
+                    "brightness(1.8) saturate(1.5)"
+            },
+
+            {
+                filter:
+                    "brightness(1)"
+            }
+
+        ],
+
+        {
+
+            duration:1800,
+
+            easing:"ease"
+
+        }
+
+    );
+
+
+    setTimeout(
+        () => container.remove(),
+        2300
+    );
+}
+
+
+/* =========================================================
+   DESKTOP NAME HOVER
+========================================================= */
+
+if(!isTouchDevice){
+
+name.addEventListener(
+"mouseenter",
+()=>{
+
+    cursorRing.style.width =
+        "90px";
+
+    cursorRing.style.height =
+        "90px";
+
+    cursorRing.style.borderColor =
+        "rgba(255,220,160,.8)";
+
+});
+
+
+name.addEventListener(
+"mouseleave",
+()=>{
+
+    cursorRing.style.width =
+        "46px";
+
+    cursorRing.style.height =
+        "46px";
+
+    cursorRing.style.borderColor =
+        "rgba(255,202,226,.5)";
+
+});
+
+}
+
+
+/* =========================================================
+   MOBILE TOUCH LIGHT
+========================================================= */
+
+document.addEventListener(
+"touchmove",
+e=>{
+
+    if(!e.touches.length)
+        return;
+
+
+    const touch =
+        e.touches[0];
+
+
+    const xp =
+        touch.clientX /
+        window.innerWidth;
+
+
+    const yp =
+        touch.clientY /
+        window.innerHeight;
+
+
+    document.documentElement
+        .style.setProperty(
+            "--mx",
+            xp * 100 + "%"
+        );
+
+
+    document.documentElement
+        .style.setProperty(
+            "--my",
+            yp * 100 + "%"
+        );
+
+
+    mouse.x =
+        touch.clientX;
+
+    mouse.y =
+        touch.clientY;
+
+
+    magneticLetters(
+        touch.clientX,
+        touch.clientY
+    );
+
+},
+{
+    passive:true
+});
+
+
+/* =========================================================
+   MOBILE TOUCH EXPLOSION
+========================================================= */
+
+document.addEventListener(
+"touchstart",
+e=>{
+
+    if(!e.touches.length)
+        return;
+
+
+    const touch =
+        e.touches[0];
+
+
+    createShockwave(
+        touch.clientX,
+        touch.clientY
+    );
+
+
+    createExplosion(
+        touch.clientX,
+        touch.clientY
+    );
+
+},
+{
+    passive:true
+});
+
+
+/* =========================================================
+   MOBILE LETTER TOUCH
+========================================================= */
+
+letters.forEach(
+letter=>{
+
+    letter.addEventListener(
+    "touchstart",
+    e=>{
+
+        if(!e.touches.length)
+            return;
+
+
+        const touch =
+            e.touches[0];
+
+
+        createExplosion(
+            touch.clientX,
+            touch.clientY,
+            20
+        );
+
+
+        animateLetter(
+            letter
+        );
+
+    },
+    {
+        passive:true
+    });
+
+});
+
+
+/* =========================================================
+   DOUBLE TAP SECRET
+========================================================= */
+
+let lastTap = 0;
+
+
+name.addEventListener(
+"touchend",
+()=>{
+
+    const now =
+        Date.now();
+
+
+    const difference =
+        now -
+        lastTap;
+
+
+    if(
+        difference < 350 &&
+        difference > 0
+    ){
+
+        secretHeart();
+
+        lastTap = 0;
+
+    }
+
+    else{
+
+        lastTap =
+            now;
+
+    }
+
+},
+{
+    passive:true
+});
+
+
+/* =========================================================
+   RESET MOBILE PARTICLE POSITION
+========================================================= */
+
+document.addEventListener(
+"touchend",
+()=>{
+
+    setTimeout(
+    ()=>{
+
+        mouse.x =
+            -1000;
+
+        mouse.y =
+            -1000;
+
+        letters.forEach(
+            letter=>{
+                letter.style.transform="";
+            }
+        );
+
+    },
+    500
+    );
+
+},
+{
+    passive:true
+});
+
+
+/* =========================================================
+   ORIENTATION CHANGE
+========================================================= */
+
+window.addEventListener(
+"orientationchange",
+()=>{
+
+    setTimeout(
+        resize,
+        300
+    );
+
+});
+
+</script>
+
+</body>
+</html>
